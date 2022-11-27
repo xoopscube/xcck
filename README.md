@@ -1,5 +1,41 @@
-/////////////////////////// — xCCK : XCube Contents Creation Kit
-====
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/)
+![License GPL](https://img.shields.io/badge/License-GPL-green)
+![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
+
+## ///// — xCCK : XCube Contents Creation Kit
+
+![alt text](https://repository-images.githubusercontent.com/8041553/494f183f-cd64-41b1-8ad7-4d9be8fdbf5)
+
+
+MODULE | xCCK
+------------ | -------------
+Description | xCCK is a No-code module to easily create fields and pages to manage data.
+Render Engine | Smarty v2 and XCube Layout
+Version | 1.23.1
+Update | @gigamaster Nuno Luciano (XCL7)
+Author | Original by @kilica (core developer)
+Copyright | 2011-2022 Authors
+License | GPL
+
+
+##### :computer: The Minimum Requirements
+
+
+
+          Apache, Nginx, etc. PHP 7.2.x
+          MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.3.+
+
+
+
+-----
+
+
+
+## Overview
+
+### xCCK : XCube Contents Creation Kit
+
 
 xCCK is an acronym for XOOPS Cube Contents Creation Kit, a type of general-purpose database module.   
 It is a new generation of universal module, a No-code development that can also be regarded as a form    
