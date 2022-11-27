@@ -70,5 +70,3 @@ class Xcck_RevisionViewAction extends Xcck_PageViewAction
         $this->mObject = Xcck_Utils::setupPageByRevision($revision);
     }
 }
-
-?>

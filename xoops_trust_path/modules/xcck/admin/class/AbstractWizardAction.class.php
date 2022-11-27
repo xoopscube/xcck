@@ -129,5 +129,3 @@ abstract class Xcck_Admin_AbstractWizardAction extends Xcck_AbstractAction
 		return XOOPS_MODULE_URL .'/'. $this->mAsset->mDirname .'/admin/index.php?action=Config'.$this->_mBackName.'Wizard';
 	}
 }
-
-?>

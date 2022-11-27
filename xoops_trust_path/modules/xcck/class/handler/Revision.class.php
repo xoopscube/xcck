@@ -29,10 +29,10 @@ class Xcck_RevisionObject extends Xcck_PageObject
     {
         $this->mDirname = $dirname;
         $this->loadDefinition();
-    
+
         $this->initVar('revision_id', XOBJ_DTYPE_INT, '', false);
         $this->initVar('page_id', XOBJ_DTYPE_INT, '', false);
-        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('category_id', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('maintable_id', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('p_id', XOBJ_DTYPE_INT, 0, false);
@@ -42,7 +42,7 @@ class Xcck_RevisionObject extends Xcck_PageObject
         $this->initVar('weight', XOBJ_DTYPE_INT, 50, false);
         $this->initVar('posttime', XOBJ_DTYPE_INT, time(), false);
         $this->initVar('updatetime', XOBJ_DTYPE_INT, time(), false);
-    
+
         foreach(array_keys($this->mDef) as $key){
             $this->mDef[$key]->mFieldType = $this->mDef[$key]->getFieldType();
             $this->mDef[$key]->mFieldType->setInitVar($this, $this->mDef[$key]->getShow('field_name'), $this->mDef[$key]->getDefault());
@@ -110,5 +110,3 @@ class Xcck_RevisionHandler extends Xcck_ObjectGenericHandler
         return false;
     }
 }
-
-?>

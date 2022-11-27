@@ -3,6 +3,7 @@
  * @file
  * @package xcck
  * @version $Id$
+ * @author Kilica (https://github.com/kilica/xcck/)
 **/
 
 if(!defined('XOOPS_ROOT_PATH'))

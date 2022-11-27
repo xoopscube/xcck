@@ -132,5 +132,3 @@ class Xcck_GroupCategoryManager extends Xcck_AbstractCategoryManager
 		return $idList;
 	}
 }
-
-?>

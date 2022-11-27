@@ -270,5 +270,3 @@ class Xcck_AssetManager
         return XCCK_TRUST_PATH . ($isAdmin ? '/admin/' : '/');
     }
 }
-
-?>

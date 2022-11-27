@@ -44,5 +44,3 @@ class Xcck_Admin_SettingOutputAction extends Xcck_AbstractAction
 		$render->setAttribute('xcckConfigs', $this->mRoot->mContext->mModuleConfig);
 	}
 }
-
-?>

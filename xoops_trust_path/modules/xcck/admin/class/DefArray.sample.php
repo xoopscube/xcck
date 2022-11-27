@@ -47,4 +47,3 @@ $def[3] = array(
 	'options' => ''
 );
 /// end definitions ///
-?>

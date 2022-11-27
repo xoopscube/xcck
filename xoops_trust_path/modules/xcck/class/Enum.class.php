@@ -16,6 +16,12 @@ interface Xcck_AuthType
     const POST = "post";
     const REVIEW = "review";
     const MANAGE = "manage";
+
+	// TODO
+	/**
+	 * @returns string
+	 */
+	// public function getType();
 }
 
 /**
@@ -100,9 +106,9 @@ class Xcck_Cond
 
     /**
      * get Xcck_Cond value from string
-     * 
+     *
      * @param   string   $str		Xcck_Cond const value
-     * 
+     *
      * @return  Enum
     **/
 	public static function getValue(/*** string ***/ $num)
@@ -146,6 +152,3 @@ class Xcck_Cond
 		return $ret;
 	}
 }
-
-
-?>

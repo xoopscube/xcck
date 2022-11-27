@@ -106,5 +106,3 @@ class Xcck_DefinitionListAction extends Xcck_AbstractListAction
 		$render->setAttribute('isSubtable', $this->_isSubtable());
 	}
 }
-
-?>

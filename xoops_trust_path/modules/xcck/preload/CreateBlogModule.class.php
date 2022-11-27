@@ -17,7 +17,7 @@ class Xcck_CreateBlogModule extends XCube_ActionFilter
 		$this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.' . basename(dirname(__FILE__)) . '.Success',array(&$this, 'createBlogModule'));
 	}
 
-//			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Success'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+// XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Success'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
 
 	/**
 	 *	@public
@@ -67,5 +67,3 @@ class Xcck_CreateBlogModule extends XCube_ActionFilter
         return $settingArr;
 	}
 }
-
-?>

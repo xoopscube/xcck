@@ -211,5 +211,3 @@ class Xcck_PageDeleteAction extends Xcck_AbstractDeleteAction
         $this->mRoot->mController->executeForward($url);
     }
 }
-
-?>

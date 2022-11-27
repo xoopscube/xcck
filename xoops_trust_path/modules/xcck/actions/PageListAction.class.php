@@ -207,5 +207,3 @@ class Xcck_PageListAction extends Xcck_AbstractListAction
         $render->setAttribute('xoops_breadcrumbs', $this->_getBreadcrumb());
     }
 }
-
-?>

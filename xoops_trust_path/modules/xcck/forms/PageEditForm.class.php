@@ -23,9 +23,9 @@ class Xcck_PageEditForm extends XCube_ActionForm
 
     /**
      * getTokenName
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     public function getTokenName()
@@ -35,23 +35,26 @@ class Xcck_PageEditForm extends XCube_ActionForm
 
     /**
      * prepare
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
+     * @brief gigamaster test using $dirname=null to not break contract
     **/
-    public function prepare($dirname)
+    public function prepare($dirname=null)
     {
-        $this->mDirname = $dirname;
+
+
         $handler = Legacy_Utils::getModuleHandler('definition', $dirname);
+        $this->mDirname = $dirname;
         $this->_mDef = $handler->getObjects();
         $this->mFieldType = new Xcck_FieldType();
-    
+
         $chandler = xoops_gethandler('config');
         $conf = $chandler->getConfigsByDirname($dirname);
         $this->mUseMap = $conf['use_map']==1 ? true : false;
         $this->mUseTag = $conf['tag_dirname'] ? true : false;
-    
+
         //
         // Set form properties for default fields
         //
@@ -66,11 +69,11 @@ class Xcck_PageEditForm extends XCube_ActionForm
         $this->mFormProperties['status'] = new XCube_IntProperty('status');
         $this->mFormProperties['posttime'] = new XCube_IntProperty('posttime');
         $this->mFormProperties['updatetime'] = new XCube_IntProperty('updatetime');
-    
+
         if($this->mUseTag){
             $this->mFormProperties['tags'] = new XCube_TextProperty('tags');
         }
-    
+
         if($this->mUseMap){
             $this->mFormProperties['latitude'] = new XCube_FloatProperty('latitude');
             $this->mFormProperties['longitude'] = new XCube_FloatProperty('longitude');
@@ -81,8 +84,8 @@ class Xcck_PageEditForm extends XCube_ActionForm
         //
         $this->mFieldProperties['title'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(array('required'));
-        $this->mFieldProperties['title']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_TITLE, '255');
-    
+        $this->mFieldProperties['title']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_TITLE, '191');
+
         foreach(array_keys($this->_mDef) as $key){
             //
             // Set form properties for custom fields
@@ -98,7 +101,7 @@ class Xcck_PageEditForm extends XCube_ActionForm
                 $this->mFormProperties[$this->_mDef[$key]->get('field_name').'_file'] = new XCube_FileProperty($this->_mDef[$key]->get('field_name').'_file');
                 $this->mFormProperties[$this->_mDef[$key]->get('field_name').'_delete'] = new XCube_BoolProperty($this->_mDef[$key]->get('field_name').'_delete');
             }
-        
+
             //
             //validation checks for custom fields
             //
@@ -138,9 +141,9 @@ class Xcck_PageEditForm extends XCube_ActionForm
 
     /**
      * Validate input data.
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function validate()
@@ -148,7 +151,7 @@ class Xcck_PageEditForm extends XCube_ActionForm
         parent::validate();
         /**
          * Xcck.Event.ValidateRegisterForm
-         * 
+         *
          * @param   &Xcck_PageEditForm
         **/
         XCube_DelegateUtils::call('Module.'.$this->mDirname.'.ValidateRegisterForm', new XCube_Ref($this));
@@ -179,9 +182,9 @@ class Xcck_PageEditForm extends XCube_ActionForm
 
     /**
      * load
-     * 
+     *
      * @param   XoopsSimpleObject  &$obj
-     * 
+     *
      * @return  void
     **/
     public function load(/*** XoopsSimpleObject ***/ &$obj)
@@ -204,7 +207,7 @@ class Xcck_PageEditForm extends XCube_ActionForm
                 $this->set('enable_'.$this->_mDef[$key]->get('field_name'), 1);
             }
         }
-        
+
         if($this->mUseTag){
             $tags = is_array($obj->mTag) ? implode(' ', $obj->mTag) : null;
             if(count($obj->mTag)>0) $tags = $tags.' ';
@@ -214,9 +217,9 @@ class Xcck_PageEditForm extends XCube_ActionForm
 
     /**
      * update
-     * 
+     *
      * @param   XoopsSimpleObject  &$obj
-     * 
+     *
      * @return  void
     **/
     public function update(/*** XoopsSimpleObject ***/ &$obj)
@@ -280,11 +283,11 @@ class Xcck_PageEditForm extends XCube_ActionForm
             }
             $obj->set($def->get('field_name'), $val);
         }
-    
+
         if($this->mUseTag){
             $obj->mTag = explode(' ', trim($this->get('tags')));
         }
-    
+
         if($this->mUseMap){
             $obj->mLatlng = array($this->get('latitude'), $this->get('longitude'));
         }
@@ -301,11 +304,11 @@ class Xcck_PageEditForm extends XCube_ActionForm
 
     /**
      * _getPurifiedHtml
-     * 
+     *
      * @param   string  $key
      * @param   string  $encoding
      * @param   string  $doctype
-     * 
+     *
      * @return  string
     **/
     protected function _getPurifiedHtml(/*** string ***/ $key, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
