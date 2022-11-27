@@ -130,14 +130,14 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
 
     /**
      * getOverrideFileInfo
-     * 
-     * @param   string  $file
-     * @param   string  $prefix
-     * @param   bool  $isSpDirName
-     * 
-     * @return  {string 'theme',string 'file',string 'dirname'}
-    **/
-    public static function getOverrideFileInfo(/*** string ***/ $file,/*** string ***/ $prefix = null,/*** bool ***/ $isSpDirName = false)
+     *
+     * @param string      $file
+     * @param string|null $prefix
+     * @param bool        $isSpDirName
+     *
+     * @return null[] {string 'theme',string 'file',string 'dirname'}
+     */
+    public static function getOverrideFileInfo(string $file, string $prefix = null, bool $isSpDirName = false)
     {
         $ret = array(
             'url'     => null,
@@ -146,7 +146,9 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
             'dirname' => null,
             'file'    => null
         );
-        if(strpos($file,'..') !== false || strpos($prefix,'..' !== false))
+        // TODO Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior
+        // if(strpos($file,'..') !== false || strpos($prefix,'..' != false))
+        if('..' && strpos($file,'..') !== false || ('..' && strpos($prefix,'..') != false))
         {
             return $ret;
         }
@@ -291,7 +293,7 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
     
         // TODO will be use other method
         printf(
-            '<link rel="stylesheet" typw="text/css" media="%s" href="%s/legacy/admin/css.php?file=%s%s%s" />',
+            '<link rel="stylesheet" typw="text/css" media="%s" href="%s/legacy/admin/css.php?file=%s%s%s">',
             (isset($params['media']) ? $params['media'] : 'all'),
             XOOPS_MODULE_URL,
             $info['file'],
@@ -300,5 +302,3 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
         );
     }
 }
-
-?>

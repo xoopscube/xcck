@@ -150,5 +150,3 @@ class Xcck_RevisionShowAction extends Xcck_PageListAction
 		$render->setAttribute('xoops_breadcrumbs', $this->_getBreadcrumb());
 	}
 }
-
-?>

@@ -61,5 +61,3 @@ class Xcck_Admin_ConfigImagesWizardAction extends Xcck_Admin_AbstractWizardActio
 		return XOOPS_MODULE_URL .'/'. $this->mAsset->mDirname .'/admin/';
 	}
 }
-
-?>

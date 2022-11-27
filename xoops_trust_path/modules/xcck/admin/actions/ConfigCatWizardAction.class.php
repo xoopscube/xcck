@@ -86,5 +86,3 @@ class Xcck_Admin_ConfigCatWizardAction extends Xcck_Admin_AbstractWizardAction
 		return array('flat'=>'flat', 'category'=>'category');
 	}
 }
-
-?>

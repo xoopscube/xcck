@@ -131,7 +131,7 @@ abstract class Xcck_AbstractFilterForm
     /**
      * getSort
      * 
-     * @param   int		$num
+     * @param int $num
      * 
      * @return  Enum
     **/
@@ -144,7 +144,7 @@ abstract class Xcck_AbstractFilterForm
     /**
      * getOrder
      * 
-     * @param   int		$num
+     * @param int $num
      * 
      * @return  Enum
     **/
@@ -156,8 +156,8 @@ abstract class Xcck_AbstractFilterForm
     /**
      * &getCriteria
      * 
-     * @param   int  $start
-     * @param   int  $limit
+     * @param int|null $start
+     * @param int|null $limit
      * 
      * @return  Criteria
     **/
@@ -178,4 +178,3 @@ abstract class Xcck_AbstractFilterForm
     }
 }
 
-?>

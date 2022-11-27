@@ -1,9 +1,20 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="adminnavi" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$legacy_module}></a>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
+</div>
+
 <div class="adminPage">
-<h1><{$smarty.const._AD_XCCK_LANG_SETTING_OUTPUT}></h1>
+
+<h2><{$smarty.const._AD_XCCK_LANG_SETTING_OUTPUT}></h2>
+
 <p class="description">
 <{$smarty.const._AD_XCCK_DESC_SETTING_OUTPUT}>
 </p>
-<textarea rows="10" cols="60">
+
+<textarea rows="14" style="width:90%">
 <?php
 /**
  * @file
@@ -48,7 +59,7 @@ class Legacy_<{$dirname|ucfirst}>Install extends XCube_ActionFilter
   {
     $settingArr = array();
 
-    //Opposite Team
+    //Custom Fields
 <{foreach item=def from=$definitions}>
     $settingArr[] = array(
         'field_name' => '<{$def->getShow('field_name')}>',

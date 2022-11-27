@@ -103,5 +103,3 @@ class Xcck_Admin_ConfigMaintableWizardAction extends Xcck_Admin_AbstractWizardAc
 		return $list;
 	}
 }
-
-?>

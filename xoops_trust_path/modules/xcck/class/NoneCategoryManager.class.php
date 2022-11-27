@@ -121,5 +121,3 @@ class Xcck_NoneCategoryManager extends Xcck_AbstractCategoryManager
 		return array();
 	}
 }
-
-?>

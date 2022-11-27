@@ -1,10 +1,18 @@
-<div class="adminPage">
-<h1><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT}></h1>
+<div class="adminnavi" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$legacy_module}></a>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
+</div>
 
-<h2><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT_VIEW}></h2>
+<div class="adminPage">
+<h2><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT}></h2>
+
+<h3><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT_VIEW}></h3>
+
 <p class="description">
 <{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_VIEW}>
 </p>
+
 <textarea rows="10" cols="60">
 <{foreach item=definition from=$definitions}>
 <{if $definition->get('field_type')!='startdate'||$definition->get('field_type')!='enddate'}>
@@ -25,7 +33,7 @@
     <th<{if $definition->get('required')==true}> class="required"<{/if}>>&lt;{$fields.<{$definition->getShow('field_name')}>->getShow('label')}&gt;</th>
     <td>
 <{if $definition->get('field_type')=="string"}>
-      &lt;{xoops_input type=text name=<{$definition->getShow('field_name')}> value=$actionForm->get('<{$definition->getShow('field_name')}>')  size=40 maxlength=255}&gt;
+      &lt;{xoops_input type=text name=<{$definition->getShow('field_name')}> value=$actionForm->get('<{$definition->getShow('field_name')}>')  size=40 maxlength=191}&gt;
 <{elseif $definition->get('field_type')=="int"}>
       &lt;{xoops_input type=text name=<{$definition->getShow('field_name')}> value=$actionForm->get('<{$definition->getShow('field_name')}>') size=15 maxlength=11}&gt;
 <{elseif $definition->get('field_type')=="uri"}>

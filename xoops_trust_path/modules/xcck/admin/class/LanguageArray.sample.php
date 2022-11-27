@@ -7,4 +7,3 @@ $lang['definition'][0] = '';
 $lang['label'][1] = '';
 $lang['definition'][1] = '';
 
-?>

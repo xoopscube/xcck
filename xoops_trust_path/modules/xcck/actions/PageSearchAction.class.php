@@ -102,5 +102,3 @@ class Xcck_PageSearchAction extends Xcck_PageListAction
         $headerScript->addScript($this->_getDatePickerScript());
     }
 }
-
-?>

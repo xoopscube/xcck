@@ -225,9 +225,9 @@ abstract class Xcck_AbstractAction
 
     /**
      * getAuthType
-     * 
+     *
      * @param   string  $type
-     * 
+     *
      * @return  string
     **/
     public function getAuthType()
@@ -436,11 +436,11 @@ var %s_map = new google.maps.Map($("#%s_map").get(0), %s_Options);', $prefix, $l
 
     /**
      * _getNextUri
-     * 
-     * @param   void
-     * 
+     *
+     * @param void
+     * @param null $actionName
      * @return  string
-    **/
+     */
     protected function _getNextUri($tableName, $actionName=null)
     {
         $handler = $this->_getHandler();
@@ -457,5 +457,3 @@ var %s_map = new google.maps.Map($("#%s_map").get(0), %s_Options);', $prefix, $l
         }
     }
 }
-
-?>

@@ -226,5 +226,3 @@ class Xcck_MonthlyBlock extends Legacy_BlockProcedure
         $renderSystem->renderBlock($render);
     }
 }
-
-?>

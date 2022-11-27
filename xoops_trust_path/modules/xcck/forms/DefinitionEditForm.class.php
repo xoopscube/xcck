@@ -21,9 +21,9 @@ class Xcck_DefinitionEditForm extends XCube_ActionForm
     protected /*** string ***/ $_mDirname;
     /**
      * getTokenName
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     public function getTokenName()
@@ -33,9 +33,9 @@ class Xcck_DefinitionEditForm extends XCube_ActionForm
 
     /**
      * prepare
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function prepare($dirname)
@@ -55,32 +55,32 @@ class Xcck_DefinitionEditForm extends XCube_ActionForm
         $this->mFormProperties['search_flag'] = new XCube_BoolProperty('search_flag');
         $this->mFormProperties['description'] = new XCube_TextProperty('description');
         $this->mFormProperties['options'] = new XCube_TextProperty('options');
-    
+
         //
         // Set field properties
         //
         $this->mFieldProperties['definition_id'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['definition_id']->setDependsByArray(array('required'));
         $this->mFieldProperties['definition_id']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_DEFINITION_ID);
-    
+
         $this->mFieldProperties['field_name'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['field_name']->setDependsByArray(array('required','maxlength'));
         $this->mFieldProperties['field_name']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_FIELD_NAME, '32');
         $this->mFieldProperties['field_name']->addMessage('maxlength', _MD_XCCK_ERROR_MAXLENGTH, _MD_XCCK_LANG_FIELD_NAME, '32');
         $this->mFieldProperties['field_name']->addVar('maxlength', '32');
-    
+
         $this->mFieldProperties['label'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['label']->setDependsByArray(array('required','maxlength'));
-        $this->mFieldProperties['label']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_LABEL, '255');
-        $this->mFieldProperties['label']->addMessage('maxlength', _MD_XCCK_ERROR_MAXLENGTH, _MD_XCCK_LANG_LABEL, '255');
-        $this->mFieldProperties['label']->addVar('maxlength', '255');
-    
+        $this->mFieldProperties['label']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_LABEL, '191');
+        $this->mFieldProperties['label']->addMessage('maxlength', _MD_XCCK_ERROR_MAXLENGTH, _MD_XCCK_LANG_LABEL, '191');
+        $this->mFieldProperties['label']->addVar('maxlength', '191');
+
         $this->mFieldProperties['field_type'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['field_type']->setDependsByArray(array('required','maxlength'));
         $this->mFieldProperties['field_type']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_FIELD_TYPE, '16');
         $this->mFieldProperties['field_type']->addMessage('maxlength', _MD_XCCK_ERROR_MAXLENGTH, _MD_XCCK_LANG_FIELD_TYPE, '16');
         $this->mFieldProperties['field_type']->addVar('maxlength', '16');
-    
+
         $this->mFieldProperties['weight'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['weight']->setDependsByArray(array('required'));
         $this->mFieldProperties['weight']->addMessage('required', _MD_XCCK_ERROR_REQUIRED, _MD_XCCK_LANG_WEIGHT);
@@ -98,9 +98,9 @@ class Xcck_DefinitionEditForm extends XCube_ActionForm
 
     /**
      * load
-     * 
+     *
      * @param   XoopsSimpleObject  &$obj
-     * 
+     *
      * @return  void
     **/
     public function load(/*** XoopsSimpleObject ***/ &$obj)
@@ -120,9 +120,9 @@ class Xcck_DefinitionEditForm extends XCube_ActionForm
 
     /**
      * update
-     * 
+     *
      * @param   XoopsSimpleObject  &$obj
-     * 
+     *
      * @return  void
     **/
     public function update(/*** XoopsSimpleObject ***/ &$obj)

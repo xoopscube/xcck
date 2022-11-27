@@ -44,5 +44,3 @@ class Xcck_Admin_OrderShowAction extends Xcck_AbstractAction
 		$render->setAttribute('xcckConfigs', $this->mRoot->mContext->mModuleConfig);
 	}
 }
-
-?>

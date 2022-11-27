@@ -134,5 +134,3 @@ class Xcck_DefinitionDeleteAction extends Xcck_AbstractDeleteAction
         $this->mRoot->mController->executeForward($this->_getNextUri('definition'));
     }
 }
-
-?>

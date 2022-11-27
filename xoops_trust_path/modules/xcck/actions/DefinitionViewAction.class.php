@@ -96,5 +96,3 @@ class Xcck_DefinitionViewAction extends Xcck_AbstractViewAction
 		$this->mRoot->mController->executeRedirect($this->_getNextUri('definition', 'list'), 1, _MD_XCCK_ERROR_CONTENT_IS_NOT_FOUND);
 	}
 }
-
-?>

@@ -23,9 +23,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * _getId
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  int
     **/
     protected function _getId()
@@ -39,9 +39,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * _getCatId
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  int
     **/
     protected function _getCatId()
@@ -63,9 +63,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * _getParentId
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  int
     **/
     protected function _getParentId()
@@ -75,9 +75,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * &_getHandler
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Xcck_PageHandler
     **/
     protected function &_getHandler()
@@ -88,9 +88,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * _getPageTitle
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     protected function _getPagetitle()
@@ -100,9 +100,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * _getXcckAuthType
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     public function _getXcckAuthType()
@@ -112,9 +112,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * hasPermission
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function hasPermission()
@@ -142,15 +142,15 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
                 return true;
             }
         }
-    
+
         return false;
     }
 
     /**
      * _setupActionForm
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     protected function _setupActionForm()
@@ -197,9 +197,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * prepare
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function prepare()
@@ -212,7 +212,7 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
         if($this->_getCatId()==0 && $this->_isSubtable()){
             $this->mRoot->mController->executeRedirect($this->_getNextUri('page', 'list'), 1, _MD_XCCK_ERROR_MAINTABLE_REQUIRED);
         }
-    
+
         $this->mDefinitions = Legacy_Utils::getModuleHandler('definition', $this->mAsset->mDirname)->getFields();
         if($this->mObject->isNew()){
             $this->mObject->set('uid', Legacy_Utils::getUid());
@@ -222,7 +222,7 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
         }
         $this->_setupCategoryManager('page');
         $this->mObject->loadPath();
-    
+
         //setup tags
         $this->mObject->loadTag();
 
@@ -233,30 +233,30 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * executeViewInput
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
     {
         $render->setTemplateName($this->mAsset->mDirname . '_page_edit.html');
-    
+
         $this->_setupAttributes($render);
-    
+
         $render->setAttribute('categoryType', $this->mCategoryManager->getCategoryType()=='none' ? false : true);
         $render->setAttribute('accessController', $this->mCategoryManager);
-    
+
         $render->setAttribute('isSubtable', $this->_isSubtable());
         $render->setAttribute('defaultOrder', $this->mRoot->mContext->mModuleConfig['default_order']);
-    
+
         //date field option
         $render->setAttribute('hours', range(1,24));
         $render->setAttribute('minutes', range(0,59));
-    
-    
+
+
         //set main category
-        $render->setAttribute('mainCatTree',$this->mCategoryManager->getTree(Xcck_AuthType::POST)); 
+        $render->setAttribute('mainCatTree',$this->mCategoryManager->getTree(Xcck_AuthType::POST));
         //set categories of custom field
         $tree = array();
         $groups = array();
@@ -278,9 +278,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * setup render attributes commonly used in Input and Preview
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     protected function _setupAttributes(XCube_RenderTarget $render)
@@ -292,19 +292,19 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
         $render->setAttribute('dataname', $dataname);
         $render->setAttribute('fields',$this->mDefinitions);
         $render->setAttribute('isHierarchical', $this->mRoot->mContext->mModuleConfig['hierarchical']);
-    
+
         //set tag usage
         $render->setAttribute('useTag', ($this->mRoot->mContext->mModuleConfig['tag_dirname']) ? true : false);
         $render->setAttribute('tag_dirname', $this->mRoot->mContext->mModuleConfig['tag_dirname']);
-    
+
         //set map usage
         $render->setAttribute('useMap', ($this->mRoot->mContext->mModuleConfig['use_map']) ? true : false);
-    
+
         //setup images
         $this->mObject->setupImages($isPost=false);
         $render->setAttribute('imageObjs', $this->mObject->mImage);
         $render->setAttribute('imageNameList', Xcck_Utils::getImageNameList($this->mAsset->mDirname));
-    
+
         $render->setAttribute('xoops_breadcrumbs', $this->_getBreadcrumb($this->mObject));
     }
 
@@ -413,9 +413,9 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * _setHeaderScript
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     protected function _setHeaderScript()
@@ -430,25 +430,25 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
 
     /**
      * _getGmapEditScript
-     * 
+     *
      * @param   string  $fieldName
-     * 
+     *
      * @return  string
     **/
     protected function _getGmapEditScript(/*** string ***/ $fieldName)
     {
         $mapObjName = $this->mAsset->mDirname.'_'.$fieldName.'_map';
         return sprintf('
-google.maps.event.addListener(%s, "click", function(e) 
+google.maps.event.addListener(%s, "click", function(e)
 {
     // set position
-    markerObj.position = e.latLng; 
+    markerObj.position = e.latLng;
 
     // set marker
-    markerObj.setMap(%s); 
-    $("#legacy_xoopsform_%s").value(e.latLng.lat()); 
-    $("#legacy_xoopsform_%s").value(e.latLng.lng()); 
-}); 
+    markerObj.setMap(%s);
+    $("#legacy_xoopsform_%s").value(e.latLng.lat());
+    $("#legacy_xoopsform_%s").value(e.latLng.lng());
+});
         ', $mapObjName, $mapObjName, $fieldName, $fieldName);
     }
 
@@ -475,9 +475,9 @@ google.maps.event.addListener(%s, "click", function(e)
 
     /**
      * executeViewSuccess
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
@@ -503,9 +503,9 @@ google.maps.event.addListener(%s, "click", function(e)
 
     /**
      * executeViewError
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
@@ -524,9 +524,9 @@ google.maps.event.addListener(%s, "click", function(e)
 
     /**
      * executeViewCancel
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)

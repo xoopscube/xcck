@@ -4,7 +4,6 @@
  * @package xcck
  * @version $Id$
 **/
-
 define('_AD_XCCK_DESC_XCCK', 'xCCK is Contents Creation Kit for XOOPS Cube Legacy. With this module, you can design fields you want freely. You can add fields of string, integer, textarea, select box, date, category and images.');
 
 define('_MD_XCCK_LANG_CONFIG_CATEGORY_WIZARD', 'Category Setting');
@@ -19,13 +18,14 @@ define('_MD_XCCK_LANG_CONFIG_PROGRESS_WIZARD', 'Publish Workflow Management Sett
 define('_MD_XCCK_DESC_CONFIG_PROGRESS_WIZARD', 'xCCK can use workflow management system through a LEGACY_WORKFLOW module.');
 
 define('_AD_XCCK_LANG_ACCESS_CONTROLLER', 'dirname of the category management module');
-define('_AD_XCCK_LANG_SHOW_ORDER', 'How to show list');
+define('_AD_XCCK_LANG_SHOW_ORDER', 'Select how to show list');
 define('_AD_XCCK_LANG_AUTH_TYPE', 'Authentication Group Setting');
 define('_AD_XCCK_LANG_USE_CATEGORY', 'Type of category management');
 define('_AD_XCCK_LANG_IMAGES', 'Attached image name');
-define('_AD_XCCK_LANG_PARENT', 'Maintable xCCK module\'s dirname');
+define('_AD_XCCK_LANG_MAINTABLE', 'Directory name of parent xCCK');
 define('_AD_XCCK_LANG_PUBLISH', 'Type of Workflow Management');
 define('_AD_XCCK_LANG_THRESHOLD', 'Number of votes to publish');
+
 
 define('_AD_XCCK_LANG_SETTING_OUTPUT', 'Export the settings');
 define('_AD_XCCK_DESC_SETTING_OUTPUT', 'Export the fields and Preference settings of this module on another site. Copy &amp; paste the php code in the textarea, and make the file "{Xcck\'s dirname}Install.class.php" under (html)/modules/legacy/preload/. Then, you install the module !<br />For example, xcck\'s dirname is "Content", make the file "ContentInstall.class.php" by copy the textarea.');
@@ -49,4 +49,3 @@ define('_AD_XCCK_LANG_WEIGHT_ASC', 'Weight, Ascending');
 define('_AD_XCCK_LANG_WEIGHT_DESC', 'Weight, Descending');
 define('_AD_XCCK_LANG_POSTTIME_ASC', 'Posttime, Ascending');
 define('_AD_XCCK_LANG_POSTTIME_DESC', 'Posttime, Descending');
-?>

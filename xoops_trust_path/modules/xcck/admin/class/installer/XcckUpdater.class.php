@@ -382,5 +382,3 @@ class Xcck_Updater
         }
     }
 }
-
-?>

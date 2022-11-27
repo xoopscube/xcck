@@ -70,5 +70,3 @@ abstract class Xcck_AbstractDeleteAction extends Xcck_AbstractEditAction
         return XCCK_FRAME_VIEW_ERROR;
     }
 }
-
-?>
