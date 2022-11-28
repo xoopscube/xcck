@@ -50,9 +50,9 @@ class Xcck_PageFilterForm extends Xcck_AbstractFilterForm
 
     /**
      * _addSortKeys
-     * 
-     * @param   string $dirname
-     * 
+     *
+     * @param   $dirname
+     *
      * @return  void
     **/
     protected function _addSortKeys()
@@ -66,8 +66,8 @@ class Xcck_PageFilterForm extends Xcck_AbstractFilterForm
     /**
      * prepare
      * 
-     * @param   XCube_PageNavigator  &$navi
-     * @param   XoopsObjectGenericHandler  &$handler
+     * @param XCube_PageNavigator  &$navi
+     * @param XoopsObjectGenericHandler  &$handler
      * 
      * @return  void
     **/
@@ -96,20 +96,25 @@ class Xcck_PageFilterForm extends Xcck_AbstractFilterForm
     /**
      * fetch
      * 
-     * @param   string	$dirname
+     * @param string|null $dirname
      * 
      * @return  void
     **/
-    public function fetch($dirname)
+    // TODO @gigamaster Declaration of Xcck_PageFilterForm::fetch($dirname) should be compatible with Xcck_AbstractFilterForm
+    // public function fetch($dirname)
+    public function fetch(string $dirname = null)
     {
         parent::fetch();
+
         $request = XCube_Root::getSingleton()->mContext->mRequest;
-	
+
         if (($catId = $request->getRequest('category_id')) !== null) {
             $this->mNavi->addExtra('category_id', intval($catId));
         }
 		//show all term or show only from start to end date
-		$show = ($request->getRequest('show')=='all') ? false : true;
+        // TODO ternary expression as condition ? true : false, replaced with just condition
+        //$show = ($request->getRequest('show')=='all') ? false : true;
+		$show = !(($request->getRequest('show') == 'all'));
 		$status = $request->getRequest('status');
 		$status = $show ? 10 : (isset($status) ? intval($status) : Lenum_Status::PUBLISHED);
 	
@@ -251,5 +256,3 @@ class Xcck_PageFilterForm extends Xcck_AbstractFilterForm
         $this->_mCriteria->add($cri);
     }
 }
-
-?>

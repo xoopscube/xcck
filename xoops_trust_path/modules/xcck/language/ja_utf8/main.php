@@ -33,6 +33,7 @@ define('_MD_XCCK_LANG_DEFINITION_EDIT', "フィールド定義の編集");
 define('_MD_XCCK_LANG_DEFINITION_DELETE', "フィールド定義の削除");
 define('_MD_XCCK_LANG_DEFINITION_LIST', 'フィールド定義一覧');
 define('_MD_XCCK_LANG_ADD_A_NEW_PAGE', "データの追加");
+define('_MD_XCCK_LANG_ADD_A_NEW_PAGESUB', '新しいサブページ');
 define('_MD_XCCK_LANG_PAGE_EDIT', "データの編集");
 define('_MD_XCCK_LANG_PAGE_DELETE', "データの削除");
 

@@ -148,5 +148,3 @@ class Xcck_AssetPreloadBase extends XCube_ActionFilter
 		}
 	}
 }
-
-?>

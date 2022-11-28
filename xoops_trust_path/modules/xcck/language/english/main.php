@@ -27,12 +27,13 @@ define('_MD_XCCK_LANG_FIELD_NAME_RESERVED', 'This Field name is reserved by XCCK
 define('_MD_XCCK_LANG_FIELD_NAME_DUPLICATED', 'This field_name is already used.');
 define('_MD_XCCK_MESSAGE_CONFIRM_DELETE', 'Are you sure you want to delete your selection?');
 /*** menu ***/
-define('_MD_XCCK_LANG_SHOW_ALL', 'Show All Page');
+define('_MD_XCCK_LANG_SHOW_ALL', 'Show all pages');
 define('_MD_XCCK_LANG_ADD_A_NEW_DEFINITION', 'Add a new definition');
 define('_MD_XCCK_LANG_DEFINITION_EDIT', 'Edit Definition');
 define('_MD_XCCK_LANG_DEFINITION_DELETE', 'Delete Definition');
 define('_MD_XCCK_LANG_DEFINITION_LIST', 'Definition List');
 define('_MD_XCCK_LANG_ADD_A_NEW_PAGE', 'Add a new Page');
+define('_MD_XCCK_LANG_ADD_A_NEW_PAGESUB', 'New Subpage');
 define('_MD_XCCK_LANG_PAGE_EDIT', 'Edit Page');
 define('_MD_XCCK_LANG_PAGE_DELETE', 'Delete Page');
 

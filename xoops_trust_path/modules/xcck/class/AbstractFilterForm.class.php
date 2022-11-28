@@ -63,8 +63,8 @@ abstract class Xcck_AbstractFilterForm
     /**
      * prepare
      * 
-     * @param   XCube_PageNavigator  &$navi
-     * @param   XoopsObjectGenericHandler  &$handler
+     * @param XCube_PageNavigator  &$navi
+     * @param XoopsObjectGenericHandler  &$handler
      * 
      * @return  void
     **/
@@ -79,7 +79,7 @@ abstract class Xcck_AbstractFilterForm
     /**
      * getTotalItems
      * 
-     * @param   int  &$total
+     * @param int|null  &$total
      * 
      * @return  void
     **/
@@ -161,7 +161,7 @@ abstract class Xcck_AbstractFilterForm
      * 
      * @return  Criteria
     **/
-    public function &getCriteria(/*** int ***/ $start = null,/*** int ***/ $limit = null)
+    public function &getCriteria(/*** int ***/ int $start = null,/*** int ***/ int $limit = null)
     {
         $t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
         $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);

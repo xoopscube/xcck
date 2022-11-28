@@ -373,6 +373,7 @@ class Xcck_PageEditAction extends Xcck_AbstractEditAction
     }
 
     /**
+     * TODO check is class, notify user with error message!
      * save workflow
      *
      * @param XoopsSimpleObject    $obj
