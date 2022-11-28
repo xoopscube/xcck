@@ -20,11 +20,11 @@ class Xcck_RevisionFilterForm extends Xcck_PageFilterForm
     /**
      * fetch
      * 
-     * @param   string	$dirname
+     * @param string $dirname
      * 
      * @return  void
     **/
-    public function fetch($dirname)
+    public function fetch(string $dirname)
     {
         parent::fetch();
         $request = XCube_Root::getSingleton()->mContext->mRequest;

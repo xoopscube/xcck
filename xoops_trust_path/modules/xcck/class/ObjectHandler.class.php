@@ -49,7 +49,7 @@ class Xcck_ObjectGenericHandler extends Legacy_AbstractClientObjectHandler
     {
     	$this->mDirname = $dirname;
         $this->mTable = strtr($this->mTable,array('{dirname}' => $this->getDirname()));
-        // Fix gigamaster
+        // TODO Fix gigamaster
         // parent::XoopsObjectGenericHandler($db);
         parent::__construct($db);
     }

@@ -320,8 +320,7 @@ abstract class Xcck_AbstractAction
     **/
     protected function _getDatePickerScript()
     {
-        return '
-$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});';
+        return '$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});';
     }
 
     /**
