@@ -2,17 +2,17 @@
 ![License GPL](https://img.shields.io/badge/License-GPL-green)
 ![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
 
-## ///// — xCCK : XCube Contents Creation Kit
+## ///// — xCCK - XCube Contents Creation Kit
 
-![alt text](https://repository-images.githubusercontent.com/8041553/494f183f-cd64-41b1-8ad7-4d9be8fdbf5)
+![creation kit](https://repository-images.githubusercontent.com/336454879/2c23f071-9e02-495e-a508-fbb62f9ac0c7)
 
 
 MODULE | xCCK
 ------------ | -------------
-Description | xCCK is a No-code module to easily create fields and pages to manage data.
+Description | xCCK is a No-code low-code module to easily create fields and pages to manage data.
 Render Engine | Smarty v2 and XCube Layout
 Version | 1.23.1
-Update | @gigamaster Nuno Luciano (XCL7)
+Update | @gigmaster Nuno Luciano (XCL7)
 Author | Original by @kilica (core developer)
 Copyright | 2011-2022 Authors
 License | GPL
