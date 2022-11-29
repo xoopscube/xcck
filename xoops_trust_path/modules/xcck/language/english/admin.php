@@ -35,7 +35,7 @@ define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_VIEW', 'If you want to layout PageView fie
 define('_AD_XCCK_LANG_TEMPLATE_OUTPUT_EDIT', 'Edit Template');
 define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_EDIT', 'If you want to layout PageEdit fields on xcck_page_edit.html template freely, you can copy and paste the following code. Instead, delete the code {foreach item=field from=$fields} ... {foreach}');
 define('_AD_XCCK_LANG_TEMPLATE_OUTPUT_LIST', 'List Template');
-define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_List', 'If you want to layout PageList fields on xcck_page_list.html template freely, you can copy and paste the following code. Instead, delete the code {foreach item=def from=$definitions} ... {foreach}');
+define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_LIST', 'If you want to layout PageList fields on xcck_page_list.html template freely, you can copy and paste the following code. Instead, delete the code {foreach item=def from=$definitions} ... {foreach}');
 define('_AD_XCCK_LANG_ASC_ORDER_NUMBER', 'The Num. for ASC');
 define('_AD_XCCK_LANG_DESC_ORDER_NUMBER', 'The Num. for DESC');
 define('_AD_XCCK_LANG_ORDER_SHOW', 'The numbers for Default Order');

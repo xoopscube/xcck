@@ -2,15 +2,10 @@
 
 <div class="adminnavi" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php">Dashboard</a>
-    &raquo;&raquo; <a href="./index.php"><{$legacy_module}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=Index"><{$legacy_module}></a></span>
 </div>
 
-<nav class="adminavi">
-<{foreach item=menu from=$adminMenu}>
-<a href="<{$menu.link}>" class="adminavi-item unselected"><{$menu.title}></a>
-<{/foreach}>
-</nav>
+<{include file="admin_menu.html"}>
 
 <div class="adminPage">
     <div class="tips">

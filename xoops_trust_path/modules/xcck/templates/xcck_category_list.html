@@ -1,47 +1,69 @@
-<div class="xcck">
-<div class="page-header">
-  <h1><{$xoops_modulename}> <{$smarty.const._LIST}></h1>
-</div>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}>
+<div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<{foreach item=category from=$tree.category key=k}>
-<h2><{$category->getShow('title')}></h2>
-<dl>
-<{assign var=depth value=1}>
-<{foreach item=obj from=$tree.page[$k]}>
-  <{if $depth > $obj->getDepth()}>
-  <{section name=dl loop=$depth-$obj->getDepth()}>
-  <{assign var=depth value=$obj->getDepth()}>
-  </dl>
-  <{/section}>
-  <{elseif $depth < $obj->getDepth()}>
-  <{assign var=depth value=$obj->getDepth()}>
-  <dl>
-  <{/if}>
-    <dt>
-      <{if $obj->getShow('status')<9}><span class="status" title="<{$obj->getShowStatus()}>">*</span> <{/if}>
-      <a href="<{xoops_cooluri dirname=$dirname data_id=$obj->getShow('page_id')}>"><{$obj->getShow('title')}></a>
-      <{if $accessController->isEditor($obj->get('category_id'), $obj->get('uid'))}>
-      <a class="btn btn-small" href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=edit}>"><i class="icon-pencil"></i> <{$smarty.const._EDIT}></a>
-      <a class="btn btn-small" href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=delete}>"><i class="icon-trush"></i> <{$smarty.const._DELETE}></a>
-      <{/if}>
-    </dt>
-    <{foreach item=def from=$definitions}>
-    <dd>
-    <{if $def->get('field_type')=='checkbox'}>
-      <ul>
-        <{assign var=titleArr value=$obj->showField($def->get('field_name'))}>
-        <{foreach item=option from=$titleArr.checked}>
-        <li><{$option}></li>
-        <{/foreach}>
-      </ul>
-    <{else}>
-      <{$obj->showField($def->getShow('field_name'))}>
+<article class="xcck">
+
+    <header>
+        <h2><{$xoops_modulename}> <{$smarty.const._LIST}></h2>
+    </header>
+
+    <{foreach item=category from=$tree.category key=k}>
+    <h3>
+        <span>
+        <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
+        <{$category->getShow('title')}></span>
+    </h3>
+    <dl>
+        <{assign var=depth value=1}>
+
+        <{foreach item=obj from=$tree.page[$k]}>
+
+        <{if $depth > $obj->getDepth()}>
+        <{section name=dl loop=$depth-$obj->getDepth()}>
+        <{assign var=depth value=$obj->getDepth()}>
+    </dl>
+    <{/section}>
+    <{elseif $depth < $obj->getDepth()}>
+    <{assign var=depth value=$obj->getDepth()}>
+    <dl>
     <{/if}>
-    </dd>
+    <dt>
+       <h4>
+           <span>
+               <{if $obj->getShow('status')<9}><span class="badge status" title="<{$obj->getShowStatus()}>">*</span><{/if}>
+               <a href="<{xoops_cooluri dirname=$dirname data_id=$obj->getShow('page_id')}>">
+               <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
+                   <{$obj->getShow('title')}>
+               </a>
+           </span>
+           <{if $accessController->isEditor($obj->get('category_id'), $obj->get('uid'))}>
+           <span class="action">
+               <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=edit}>" data-tooltip="<{$smarty.const._EDIT}>">
+               <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"></a>
+               <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=delete}>" data-tooltip="<{$smarty.const._DELETE}>">
+               <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"></a>
+           </span>
+        <{/if}>
+       </h4>
+    </dt>
+        <{foreach item=def from=$definitions}>
+        <dd>
+            <{if $def->get('field_type')=='checkbox'}>
+            <ul>
+                <{assign var=titleArr value=$obj->showField($def->get('field_name'))}>
+                <{foreach item=option from=$titleArr.checked}>
+                <li><{$option}>123</li>
+                <{/foreach}>
+            </ul>
+            <{else}>
+            <{$obj->showField($def->getShow('field_name'))|truncate:180}>
+            <{/if}>
+        </dd>
+        <{/foreach}>
+        <{/foreach}>
+    </dl>
     <{/foreach}>
-<{/foreach}>
-</dl>
-<{/foreach}>
 
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable isPoster=$accessController->isPoster()}>
-</div>
+    <{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable isPoster=$accessController->isPoster()}>
+</article>

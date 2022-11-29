@@ -1,34 +1,90 @@
-<div class="xcck">
-<div class="page-header">
-  <h1><{$smarty.const._MD_XCCK_LANG_DEFINITION_DELETE}></h1>
-</div>
-<div class="alert alert-warning"><{$smarty.const._MD_XCCK_MESSAGE_CONFIRM_DELETE}></div>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<form class="form-horizontal" action="<{xoops_cooluri dirname=$dirname dataname=definition action=delete}>" method="post">
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_DEFINITION_ID}></label>
-    <div class="controls"><{$object->getShow('definition_id')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_FIELD_NAME}></label>
-    <div class="controls"><{$object->getShow('field_name')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_LABEL}></label>
-    <div class="controls"><{$object->getShow('label')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}></label>
-    <div class="controls"><{$object->getShow('field_type')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_VALIDATION}></label>
-    <div class="controls"><{$object->getShow('validation')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_REQUIRED}></label>
-    <div class="controls"><{$object->getShow('required')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_WEIGHT}></label>
-    <div class="controls"><{$object->getShow('weight')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_DESCRIPTION}></label>
-    <div class="controls"><{$object->getShow('description')}></div>
-    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_OPTIONS}></label>
-    <div class="controls"><{$object->getShow('options')}></div>
-    <div class="form-actions">
-      <{xoops_token form=$actionForm}>
-      <{xoops_input type=hidden name=definition_id value=$actionForm->get('definition_id')}>
-        <button type="submit" class="btn btn-primary"><{$smarty.const._DELETE}></button>
-        <button type="submit" class="btn" name="_form_control_cancel" value="cancel"><{$smarty.const._CANCEL}></button>
-    </div>
+<{* 🔻 TODO 🛠 breadcrumbs fatal *}>
+<{* include file="db:`$dirname`_inc_breadcrumbs.html" *}>
+<nav aria-label="breadcrumb">
+    <ul>
+        <li>
+            <a href="<{$xoops_url}>/">
+                <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home">
+            </a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname}>">
+                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category"> <{$xoops_modulename}>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<form action="<{xoops_cooluri dirname=$dirname dataname=definition action=delete}>" method="post">
+
+    <article class="xcck">
+
+        <header>
+            <h2><{$smarty.const._MD_XCCK_LANG_DEFINITION_DELETE}></h2>
+        </header>
+
+        <div class="alert warning"><{$smarty.const._MD_XCCK_MESSAGE_CONFIRM_DELETE}></div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_DEFINITION_ID}>
+            <input type="text" value="<{$object->getShow('definition_id')}>" placeholder="Invalid" aria-invalid="true" readonly>
+
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_FIELD_NAME}>
+            <input type="text" value="<{$object->getShow('field_name')}>" placeholder="Invalid" aria-invalid="true" readonly>
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_LABEL}>
+            <input type="text" value="<{$object->getShow('label')}>" placeholder="Invalid" aria-invalid="true" readonly>
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}>
+            <input type="text" value="<{$object->getShow('field_type')}>" placeholder="Invalid" aria-invalid="true" readonly>
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_VALIDATION}>
+            <input type="text" value="<{$object->getShow('validation')}>" placeholder="validation" aria-invalid="true" readonly>
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_REQUIRED}>
+            <input type="text" value="<{$object->getShow('required')}>" placeholder="required" aria-invalid="true" readonly>
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_WEIGHT}>
+            <input type="text" value="<{$object->getShow('weight')}>" placeholder="Invalid" aria-invalid="true" readonly>
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_DESCRIPTION}>
+            <input type="text" value="<{$object->getShow('description')}>" placeholder="Invalid" aria-invalid="true" readonly>
+        </div>
+
+        <div class="grid-2">
+            <{$smarty.const._MD_XCCK_LANG_OPTIONS}>
+            <input type="text" value="<{$object->getShow('options')}>" placeholder="Invalid" aria-invalid="true" readonly>
+        </div>
+
+        <{xoops_token form=$actionForm}>
+        <{xoops_input type=hidden name=definition_id value=$actionForm->get('definition_id')}>
+
+        <footer class="action-control">
+            <{* FATAL menu error *}>
+            <{* include file="db:`$dirname`_inc_menu.html" *}>
+
+            <button type="submit" class="outline secondary" name="_form_control_cancel" value="cancel"><{$smarty.const._CANCEL}></button>
+            <button type="submit" class="outline secondary delete"><{$smarty.const._DELETE}></button>
+
+        </footer>
+
+    </article>
 </form>
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable}>
-</div>
