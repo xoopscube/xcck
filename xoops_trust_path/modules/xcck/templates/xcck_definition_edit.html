@@ -1,169 +1,258 @@
-<div class="xcck">
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<{if $actionForm->hasError()}>
-  <ul class="alert alert-error">
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message|xoops_escape}></li>
-    <{/foreach}>
-  </ul>
-<{/if}>
-<div class="page-header">
-  <h1><{$xoops_modulename}> <{$smarty.const._MD_XCCK_LANG_DEFINITION}> <{$smarty.const._EDIT}></h1>
-</div>
-<div class="description"><{$smarty.const._MD_XCCK_DESC_DEFAULT_FIELDS}></div>
+<{* 🔻 TODO 🛠 breadcrumbs fatal *}>
+<{* include file="db:`$dirname`_inc_breadcrumbs.html" *}>
+<nav aria-label="breadcrumb">
+    <ul>
+        <li>
+            <a href="<{$xoops_url}>/">
+                <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home">
+            </a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname}>">
+                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category"> <{$xoops_modulename}>
+            </a>
+        </li>
+    </ul>
+</nav>
 
-<form class="form-horizontal" action="<{xoops_cooluri dirname=$dirname dataname=definition action=edit}>" method="post">
-    <div class="form-control">
-      <label class="control-label required"><{$smarty.const._MD_XCCK_LANG_FIELD_NAME}></label>
-      <div class="controls">
+<form action="<{xoops_cooluri dirname=$dirname dataname=definition action=edit}>" method="post">
+
+<article class="xcck">
+
+    <{if $actionForm->hasError()}>
+    <ul class="alert error">
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+        <{/foreach}>
+    </ul>
+    <{/if}>
+
+    <header>
+        <h2><{$xoops_modulename}> <{$smarty.const._MD_XCCK_LANG_DEFINITION}> <{$smarty.const._EDIT}></h2>
+        <div class="description"><{$smarty.const._MD_XCCK_DESC_DEFAULT_FIELDS}></div>
+    </header>
+
+    <label class="required">
+        <{$smarty.const._MD_XCCK_LANG_FIELD_NAME}>
+        <smal class="description"><{$smarty.const._MD_XCCK_TIPS_FIELD_NAME}></smal>
         <{xoops_input type=text name=field_name value=$actionForm->get('field_name') size=15 maxlength=32}>
-        <p class="description"><{$smarty.const._MD_XCCK_TIPS_FIELD_NAME}></p>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label required"><{$smarty.const._MD_XCCK_LANG_LABEL}></label>
-      <div class="controls">
-        <{xoops_input type=text name=label value=$actionForm->get('label') size=15 maxlength=255}>
-        <p class="description"><{$smarty.const._MD_XCCK_TIPS_LABEL}></p>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label required"><{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}></label>
-      <div class="controls">
-          <{if $actionForm->get('definition_id')}>
-          <{$object->getShow('field_type')}>
-          <{xoops_input type=hidden name=field_type value=$actionForm->get('field_type')}>
-          <{else}>
-          <select name="field_type" id="legacy_xoopsform_field_type">
+    </label>
+
+    <label class="required">
+        <{$smarty.const._MD_XCCK_LANG_LABEL}>
+        <small class="description"><{$smarty.const._MD_XCCK_TIPS_LABEL}></small>
+        <{xoops_input type=text name=label value=$actionForm->get('label') size=15 maxlength=191}>
+    </label>
+
+    <label class="required">
+        <{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}>
+        <{if $actionForm->get('definition_id')}>
+            <{$object->getShow('field_type')}>
+            <{xoops_input type=hidden name=field_type value=$actionForm->get('field_type')}>
+        <{else}>
+        <select name="field_type" id="legacy_xoopsform_field_type">
             <{foreach item=type from=$typeArr}>
             <option value="<{$type}>"<{if $type==$actionForm->get('field_type')}> selected="selected"<{/if}>><{$type}></option>
             <{/foreach}>
-          </select>
-          <{/if}>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label"><{$smarty.const._MD_XCCK_LANG_OPTIONS}></label>
-      <div class="controls">
-        <{*xoops_textarea type=text name=options value=$actionForm->get('options')*}>
-        <div id="fieldtype_string" class="optionField">
-          <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_STRING}></p>
-        </div>
-        <div id="fieldtype_int" class="optionField">
-          <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_INT}></p>
-        </div>
-        <div id="fieldtype_text" class="optionField">
-          <label><input type="radio" name="options" value="bbcode" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="bbcode"}> checked="checked"<{/if}> />bbcode/bbcode</label>
-          <label><input type="radio" name="options" value="html|none" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="html|none"}> checked="checked"<{/if}> />html/none</label>
-          <label><input type="radio" name="options" value="html|purifier" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="html|purifier"}> checked="checked"<{/if}> />html/purifier</label>
-          <label><input type="radio" name="options" value="none|none" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none|none"}> checked="checked"<{/if}> />none/none</label>
-          <label><input type="radio" name="options" value="none|bbcode" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none|bbcode"}> checked="checked"<{/if}> />none/bbcode</label>
-          <label><input type="radio" name="options" value="none|purifier" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none|purifier"}> checked="checked"<{/if}> />none/purifier</label>
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_TEXT}></p>
-        </div>
-        <div id="fieldtype_date" class="optionField">
-          <label><input type="radio" name="options" value="date" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="date"}> checked="checked"<{/if}> />date</label>
-          <label><input type="radio" name="options" value="hour" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="hour"}> checked="checked"<{/if}> />hour</label>
-          <label><input type="radio" name="options" value="half" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="half"}> checked="checked"<{/if}> />30 minutes</label>
-          <label><input type="radio" name="options" value="quarter" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="quarter"}> checked="checked"<{/if}> />15 minutes</label>
-          <label><input type="radio" name="options" value="10min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="10min"}> checked="checked"<{/if}> />10 minutes</label>
-          <label><input type="radio" name="options" value="min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="min"}> checked="checked"<{/if}> />1 minute</label>
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_DATE}></p>
-        </div>
-        <div id="fieldtype_startdate" class="optionField">
-          <label><input type="radio" name="options" value="date" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="date"}> checked="checked"<{/if}> />date</label>
-          <label><input type="radio" name="options" value="hour" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="hour"}> checked="checked"<{/if}> />hour</label>
-          <label><input type="radio" name="options" value="half" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="half"}> checked="checked"<{/if}> />30 minutes</label>
-          <label><input type="radio" name="options" value="quarter" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="quarter"}> checked="checked"<{/if}> />15 minutes</label>
-          <label><input type="radio" name="options" value="10min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="10min"}> checked="checked"<{/if}> />10 minutes</label>
-          <label><input type="radio" name="options" value="minute" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="minute"}> checked="checked"<{/if}> />1 minute</label>
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_DATE}></p>
-        </div>
-        <div id="fieldtype_enddate" class="optionField">
-          <label><input type="radio" name="options" value="date" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="date"}> checked="checked"<{/if}> />date</label>
-          <label><input type="radio" name="options" value="hour" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="hour"}> checked="checked"<{/if}> />hour</label>
-          <label><input type="radio" name="options" value="half" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="half"}> checked="checked"<{/if}> />30 minutes</label>
-          <label><input type="radio" name="options" value="quarter" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="quarter"}> checked="checked"<{/if}> />15 minutes</label>
-          <label><input type="radio" name="options" value="10min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="10min"}> checked="checked"<{/if}> />10 minutes</label>
-          <label><input type="radio" name="options" value="minute" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="minute"}> checked="checked"<{/if}> />1 minute</label>
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_DATE}></p>
-        </div>
-        <div id="fieldtype_checkbox" class="optionField">
-          <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_CHECKBOX}></p>
-        </div>
-        <div id="fieldtype_selectbox" class="optionField">
-          <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_SELECTBOX}></p>
-        </div>
-        <div id="fieldtype_enum" class="optionField">
-          <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_ENUM}></p>
-        </div>
-        <div id="fieldtype_category" class="optionField">
-          <select name="options" id="legacy_xoopsform_options">
-            <{foreach item="catDir" from=$catDirnames}>
-            <option value="<{$catDir}>"<{if $catDir==$actionForm->get('options')}> selected="selected"<{/if}>><{$catDir}></options>
-            <{/foreach}>
-          </select>
-          <p><{$smarty.const._MD_XCCK_DESC_FIELD_CATEGORY}></p>
-        </div>
-        <div id="fieldtype_file" class="optionField">
-          <{if ! $actionForm->get('options')}><{assign var=defaultOption value="2000|txt,pdf,xls,xlsx,ppt,pptx,doc,docx,csv,zip|KB"}><{else}><{assign var=defaultOption value=$actionForm->get('options')}><{/if}>
-          <input type="text" name="options" id="legacy_xoopsform_options" value="<{$defaultOption}>" />
-        </div>
-        <{*<p class="description"><{$smarty.const._MD_XCCK_TIPS_OPTIONS}></p>*}>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label"><{$smarty.const._MD_XCCK_LANG_VALIDATION}></label>
-      <div class="controls">
-        <select name="validation" id="legacy_xoopsform_validation">
-        <option value="<{$validation}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
-        <{foreach item=validation from=$validationArr}>
-        <option value="<{$validation}>"<{if $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
-        <{/foreach}>
         </select>
-      </div>
+        <{/if}>
+    </label>
+
+    <label class="control-label"><{$smarty.const._MD_XCCK_LANG_OPTIONS}>
+    <{*xoops_textarea type=text name=options value=$actionForm->get('options')*}>
+    </label>
+    <div id="fieldtype_string" class="optionField">
+        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>">
+        <p><{$smarty.const._MD_XCCK_DESC_FIELD_STRING}></p>
     </div>
-    <div class="control-group">
-      <label class="control-label"><{$smarty.const._MD_XCCK_LANG_REQUIRED}></label>
-      <div class="controls">
-        <{xoops_input type=checkbox name=required value=1 default=$actionForm->get('required')}>
-      </div>
+    <div id="fieldtype_int" class="optionField">
+        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>">
+        <p><{$smarty.const._MD_XCCK_DESC_FIELD_INT}></p>
     </div>
-    <div class="control-group">
-      <label class="control-label required"><{$smarty.const._MD_XCCK_LANG_WEIGHT}></label>
-      <div class="controls">
-        <{xoops_input type=text name=weight value=$actionForm->get('weight') class="span1"}>
-      </div>
+    <div id="fieldtype_text" class="optionField">
+        <label>
+            <input type="radio" name="options" value="bbcode" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="bbcode"}> checked="checked"<{/if}>>
+            bbcode/bbcode
+        </label>
+        <label>
+            <input type="radio" name="options" value="html|none" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="html|none"}> checked="checked"<{/if}>>
+            html/none
+        </label>
+        <label>
+            <input type="radio" name="options" value="html|purifier" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="html|purifier"}> checked="checked"<{/if}>>
+            html/purifier
+        </label>
+        <label>
+            <input type="radio" name="options" value="none|none" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none|none"}> checked="checked"<{/if}>>
+            none/none
+        </label>
+        <label>
+            <input type="radio" name="options" value="none|bbcode" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none|bbcode"}> checked="checked"<{/if}>>
+            none/bbcode
+        </label>
+        <label>
+            <input type="radio" name="options" value="none|purifier" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none|purifier"}> checked="checked"<{/if}>>
+            none/purifier
+        </label>
+        <p><{$smarty.const._MD_XCCK_DESC_FIELD_TEXT}></p>
     </div>
-    <div class="control-group">
-      <label class="control-label"><{$smarty.const._MD_XCCK_LANG_SHOW_LIST}></label>
-      <div class="controls">
+    <div id="fieldtype_date" class="optionField">
+        <label>date
+            <input type="radio" name="options" value="date" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="date"}> checked="checked"<{/if}>>
+
+        </label>
+        <label>
+            <input type="radio" name="options" value="hour" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="hour"}> checked="checked"<{/if}>>
+            hour
+        </label>
+        <label>
+            <input type="radio" name="options" value="half" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="half"}> checked="checked"<{/if}>>
+            30 minutes
+        </label>
+        <label>
+            <input type="radio" name="options" value="quarter" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="quarter"}> checked="checked"<{/if}>>
+            15 minutes
+        </label>
+        <label>
+            <input type="radio" name="options" value="10min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="10min"}> checked="checked"<{/if}>>
+            10 minutes
+        </label>
+        <label><input type="radio" name="options" value="min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="min"}> checked="checked"<{/if}>>
+            1 minute
+        </label>
+        <p><{$smarty.const._MD_XCCK_DESC_FIELD_DATE}></p>
+    </div>
+    <div id="fieldtype_startdate" class="optionField">
+        <label>
+            <input type="radio" name="options" value="date" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="date"}> checked="checked"<{/if}>>
+            date
+        </label>
+        <label>
+            <input type="radio" name="options" value="hour" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="hour"}> checked="checked"<{/if}>>
+            hour
+        </label>
+        <label>
+            <input type="radio" name="options" value="half" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="half"}> checked="checked"<{/if}>>
+            30 minutes
+        </label>
+        <label>
+            <input type="radio" name="options" value="quarter" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="quarter"}> checked="checked"<{/if}>>
+            15 minutes
+        </label>
+        <label>
+            <input type="radio" name="options" value="10min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="10min"}> checked="checked"<{/if}>>10 minutes</label>
+        <label>
+            <input type="radio" name="options" value="minute" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="minute"}> checked="checked"<{/if}>>1 minute</label>
+        <small><{$smarty.const._MD_XCCK_DESC_FIELD_DATE}></small>
+    </div>
+    <div id="fieldtype_enddate" class="optionField">
+        <label>
+            <input type="radio" name="options" value="date" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="date"}> checked="checked"<{/if}>>
+            date
+        </label>
+        <label>
+            <input type="radio" name="options" value="hour" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="hour"}> checked="checked"<{/if}>>
+            hour
+        </label>
+        <label>
+            <input type="radio" name="options" value="half" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="half"}> checked="checked"<{/if}>>
+            30 minutes
+        </label>
+        <label>
+            <input type="radio" name="options" value="quarter" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="quarter"}> checked="checked"<{/if}>>
+            15 minutes
+        </label>
+        <label>
+            <input type="radio" name="options" value="10min" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="10min"}> checked="checked"<{/if}>>
+            10 minutes
+        </label>
+        <label>
+            <input type="radio" name="options" value="minute" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="minute"}> checked="checked"<{/if}>>
+            1 minute
+        </label>
+        <small><{$smarty.const._MD_XCCK_DESC_FIELD_DATE}></small>
+    </div>
+    <div id="fieldtype_checkbox" class="optionField">
+        <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
+        <small><{$smarty.const._MD_XCCK_DESC_FIELD_CHECKBOX}></small>
+    </div>
+    <div id="fieldtype_selectbox" class="optionField">
+        <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
+        <p><{$smarty.const._MD_XCCK_DESC_FIELD_SELECTBOX}></p>
+    </div>
+    <div id="fieldtype_enum" class="optionField">
+        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>"/>
+        <p><{$smarty.const._MD_XCCK_DESC_FIELD_ENUM}></p>
+    </div>
+    <div id="fieldtype_category" class="optionField">
+        <select name="options" id="legacy_xoopsform_options">
+            <{foreach item="catDir" from=$catDirnames}>
+            <option value="<{$catDir}>" <{if $catDir==$actionForm->get('options')}> selected="selected"<{/if}>><{$catDir}></options>
+            <{/foreach}>
+        </select>
+        <p><{$smarty.const._MD_XCCK_DESC_FIELD_CATEGORY}></p>
+    </div>
+    <div id="fieldtype_file" class="optionField">
+        <{if ! $actionForm->get('options')}><{assign var=defaultOption
+        value="2000|txt,pdf,xls,xlsx,ppt,pptx,doc,docx,csv,zip|KB"}><{else}><{assign var=defaultOption
+        value=$actionForm->get('options')}><{/if}>
+        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$defaultOption}>"/>
+    </div>
+    <{*<p class="description"><{$smarty.const._MD_XCCK_TIPS_OPTIONS}></p>*}>
+
+    <label>
+        <{$smarty.const._MD_XCCK_LANG_VALIDATION}>
+        <select name="validation" id="legacy_xoopsform_validation">
+            <option value="<{$validation}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
+            <{foreach item=validation from=$validationArr}>
+            <option value="<{$validation}>"<{if $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
+            <{/foreach}>
+        </select>
+    </label>
+
+    <label class="required">
+        <{$smarty.const._MD_XCCK_LANG_WEIGHT}>
+        <{xoops_input type=text name=weight value=$actionForm->get('weight')}>
+    </label>
+
+    <{* ---- Checkbox and Radios wrapped with Fieldset for block space
+             Input position first then label *}>
+    <fieldset>
+    <label>
+        <{xoops_input type=checkbox name=required value=1 default=$actionForm->get('required')}> <{$smarty.const._MD_XCCK_LANG_REQUIRED}>
+    </label>
+    </fieldset>
+
+    <fieldset>
+    <label>
         <{xoops_input type=checkbox name=show_list value=1 default=$actionForm->get('show_list')}>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label"><{$smarty.const._MD_XCCK_LANG_SEARCH_FLAG}></label>
-      <div class="controls">
+        <{$smarty.const._MD_XCCK_LANG_SHOW_LIST}>
+    </label>
+    </fieldset>
+
+    <fieldset>
+    <label>
         <{xoops_input type=checkbox name=search_flag value=1 default=$actionForm->get('search_flag')}>
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label"><{$smarty.const._MD_XCCK_LANG_DESCRIPTION}></label>
-      <div class="controls">
+        <{$smarty.const._MD_XCCK_LANG_SEARCH_FLAG}>
+    </label>
+    </fieldset>
+
+    <label>
+        <{$smarty.const._MD_XCCK_LANG_DESCRIPTION}>
         <{xoops_textarea type=text name=description value=$actionForm->get('description') class="span5"}>
-      </div>
-    </div>
-    <div class="form-actions">
-        <{xoops_token form=$actionForm}>
-        <{xoops_input type=hidden name=definition_id value=$actionForm->get('definition_id')}>
-        <button type="submit" class="btn btn-primary"><{$smarty.const._SUBMIT}></button>
-        <button type="submit" class="btn" name="_form_control_cancel" value="cancel"><{$smarty.const._CANCEL}></button>
-    </div>
+    </label>
+
+    <{xoops_token form=$actionForm}>
+    <{xoops_input type=hidden name=definition_id value=$actionForm->get('definition_id')}>
+
+    <footer class="action-control">
+        <{* REQUIRED name="_form_control_cancel" *}>
+        <button type="submit" class="outline" name="_form_control_cancel" value="cancel"><{$smarty.const._CANCEL}></button>
+        <button type="submit"><{$smarty.const._SUBMIT}></button>
+    </footer>
+
+</article>
 </form>
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable}>
-</div>

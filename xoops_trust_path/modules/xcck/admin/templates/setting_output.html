@@ -2,19 +2,26 @@
 
 <div class="adminnavi" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php">Dashboard</a>
-    &raquo;&raquo; <a href="./index.php"><{$legacy_module}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
+    &raquo;&raquo; <a href="./index.php?action=Index"><{$legacy_module}></a>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=SettingOutput"><{$smarty.const._MI_XCCK_LANG_SETTING_OUTPUT}></a></span>
 </div>
 
-<div class="adminPage">
+
+<{include file="admin_menu.html"}>
+
+
+<div class="ui-card-full">
 
 <h2><{$smarty.const._AD_XCCK_LANG_SETTING_OUTPUT}></h2>
 
-<p class="description">
-<{$smarty.const._AD_XCCK_DESC_SETTING_OUTPUT}>
-</p>
+<div class="tips">
+    <p class="description">
+        <{$smarty.const._AD_XCCK_DESC_SETTING_OUTPUT}>
+    </p>
+</div>
 
-<textarea rows="14" style="width:90%">
+<div class="textarea-wrap">
+<textarea id="output-source" readonly>
 <?php
 /**
  * @file
@@ -114,5 +121,7 @@ class Legacy_<{$dirname|ucfirst}>Install extends XCube_ActionFilter
 
 ?>
 </textarea>
+<div id="copyToClipboard" class="clipboard icon" title="Copy To Clipboard"></div>
+</div><{* textarea wrapper *}>
 
 </div>

@@ -1,63 +1,114 @@
-<div class="xcck">
-<div class="page-header">
-  <h1><{$xoops_modulename}> <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname action="search"}>"><{$smarty.const._MD_XCCK_LANG_SEARCH}></a></h1>
-</div>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<{* Customize your search conditions !!!
-<form class="form-horizontal" action="index.php" method="GET">
-<div>&lt; <{xcck_search def=$definitions.day condition="like"}></div>
-<div>&gt;=<{xcck_search def=$definitions.matchdate condition=">=" num=1}></div>
-<div><{xcck_search def=$definitions.level condition="*" num=2}></div>
-<input type="submit" value="<{$smarty.const._SUBMIT}>" />
-<{xoops_input type="hidden" name="action" value="PageSearch"}>
-</form>
-*}>
-<{if count($objects) > 0}>
-  <ul class="media-list">
-  <{foreach item=obj from=$objects}>
-    <li class="media">
-    <div class="media-body">
-    <h3 class="media-heading">
-      <{if $obj->getShow('status')<9}><span class="status" title="<{$obj->getShowStatus()}>">*</span> <{/if}><a href="<{xoops_cooluri dirname=$dirname data_id=$obj->getShow('page_id')}>"><{$obj->getShow('title')}></a>
-      <{if $accessController->isEditor($obj->get('category_id'), $obj->get('uid'))}>
-      <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=edit}>"><i class="icon-pencil"></i></a>
-      <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=delete}>"><i class="icon-trash"></i></a>
-      <{/if}>
-    </h3>
-    <ul class="inline">
-      <{if $catTitleList}>
-      <{assign var="catId" value=$obj->get('category_id')}>
-      <li><{$catTitleList.$catId|xoops_escape}></li>
-      <{/if}>
-      <li><{$obj->getShow('uid')|xoops_user:"user_name"}></li>
-      <li class="itemPostDate"><{$obj->get('posttime')|xoops_formattimestamp:s}></li>
-    </ul><!-- .inline -->
-    <!--
-      if you want to show field outside foreach loop, you can write down 
-      like below (when the field's name is "memo").
-      <dd>< {$obj->showField($definitions.memo->get('field_name'))} ></dd>
-    -->
-    <{foreach item=def from=$definitions}>
-    <{if $def->get('field_type')=='checkbox'}>
-    <div class="itemBody">
-      <ul>
-        <{assign var=titleArr value=$obj->showField($def->get('field_name'))}>
-        <{foreach item=option from=$titleArr.checked}>
-        <li><{$option}></li>
-        <{/foreach}>
-      </ul>
-    </div>
-    <{else}>
-    <div class="itemBody">
-      <{$obj->showField($def->getShow('field_name'))}>
-    </div>
-    <{/if}>
-    <{/foreach}>
-    </div><!-- .media-body -->
-  </li><!-- .media -->
-  <{/foreach}>
-  </ul>
-  <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
-<{/if}>
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable isPoster=$accessController->isPoster()}>
+<{include file="db:`$dirname`_inc_breadcrumbs.html"}>
+
+<article class="xcck">
+
+    <header>
+        <h2><{$xoops_modulename}> <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname action='search'}>"><{$smarty.const._MD_XCCK_LANG_SEARCH}></a></h2>
+    </header>
+    <{* Title, User ID, Order, Post time, Update time, uid *}>
+    <form action="index.php" method="GET">
+
+        <{if isset($definitions.notes)}>
+        <label>
+            <{$definitions.notes->getShow('label')|ucfirst}>
+            <{xcck_search_form def=$definitions.notes condition="Like"}>
+        </label>
+        <{/if}>
+        <{if isset($definitions.city)}>
+        <label>
+            <{$definitions.city->getShow('label')|ucfirst}>
+            <{xcck_search_form def=$definitions.city condition="Like"}>
+        </label>
+        <{/if}>
+
+        <{xoops_input type="hidden" name="action" value="PageSearch"}>
+        <input type="submit" value="<{$smarty.const._SUBMIT}>">
+    </form>
+    <{* Customize your search conditions !!!
+    <form action="index.php" method="GET">
+        <div>or (&lt;) <{xcck_search_form def=$definitions.notes condition="like"}></div>
+        <{xcck_search_form def=$def condition="<" num=0}>
+        <div>or (&lt;) <{xcck_search_form def=$definitions.day condition="like"}></div>
+        <div> or equal (&gt;=) <{xcck_search_form def=$definitions.matchdate condition=">=" num=1}></div>
+        <div><{xcck_search_form def=$definitions.level condition="*" num=2}></div>
+        <input type="submit" value="<{$smarty.const._SUBMIT}>">
+        <{xoops_input type="hidden" name="action" value="PageSearch"}>
+    </form>
+     ----- *}>
+
+
+
+    <{if count($objects) > 0}>
+    <hr>
+        <{foreach item=obj from=$objects}>
+
+<div class="headings">
+                <h4>
+                    <span>
+                    <{if $obj->getShow('status')<9}><span class="status" title="<{$obj->getShowStatus()}>">*</span> <{/if}>
+                    <a href="<{xoops_cooluri dirname=$dirname data_id=$obj->getShow('page_id')}>">
+                        <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="page">
+                        <{$obj->getShow('title')}></a>
+                    </span>
+
+                    <{if $accessController->isEditor($obj->get('category_id'), $obj->get('uid'))}>
+                    <span>
+                    <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=delete}>" data-tooltip="<{$smarty.const._DELETE}>">
+                        <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"></a>
+
+                    <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=edit}>" data-tooltip="<{$smarty.const._EDIT}>">
+                        <img class="svg edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="edit"></a>
+                    </span>
+                    <{/if}>
+
+                </h4>
+                <span class="activity">
+                    <{if $catTitleList}>
+                    <{assign var="catId" value=$obj->get('category_id')}>
+                    <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
+                    <span class="badge"><{$catTitleList.$catId|xoops_escape}></span>
+                    <{/if}>
+                    <span class="post-author"><{$obj->getShow('uid')|xoops_user:"user_name"}></span>
+                    <img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" width="1em" height="1em" alt="datetime">
+                    <span class="badge"><{$obj->get('posttime')|xoops_formattimestamp:s}></span>
+                </span>
 </div>
+                <!--
+                  if you want to show field outside foreach loop, you can write down
+                  like below (when the field's name is "memo").
+                  <dd>< {$obj->showField($definitions.memo->get('field_name'))} ></dd>
+                -->
+                <{foreach item=def from=$definitions}>
+                <{if $def->get('field_type')=='checkbox'}>
+                <div class="itemBody">
+                    <ul>
+                        <{assign var=titleArr value=$obj->showField($def->get('field_name'))}>
+                        <{foreach item=option from=$titleArr.checked}>
+                        <li><{$option}></li>
+                        <{/foreach}>
+                    </ul>
+                </div>
+                <{else}>
+                <div class="itemBody">
+                    <{$obj->showField($def->getShow('field_name'))}>
+                </div>
+                <{/if}>
+                <{/foreach}>
+
+        <{/foreach}>
+ <footer>
+     <div class="grid-2">
+         <{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable isPoster=$accessController->isPoster()}>
+         <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+     </div>
+ </footer>
+
+
+
+    <{/if}>
+
+</article>

@@ -1,1 +1,7 @@
-<div class="xcck"><a href="<{xoops_cooluri dirname=$data->getDirname() data_id=$data->get('page_id')}>"><{$data->getShow('title')}></a> <{$data->getShow('updatetime')|xoops_formattimestamp:m}></div>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="xcck">
+    <a href="<{xoops_cooluri dirname=$data->getDirname() data_id=$data->get('page_id')}>"><{$data->getShow('title')}></a>
+    <{$data->getShow('updatetime')|xoops_formattimestamp:m}>
+</div>

@@ -40,6 +40,7 @@ class Xcck_Admin_TemplateOutputAction extends Xcck_AbstractAction
 	{
 		$render->setTemplateName('template_output.html');
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
+        $render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('definitions', Legacy_Utils::getModuleHandler('definition', $this->mAsset->mDirname)->getFields());
 		$render->setAttribute('xcckConfigs', $this->mRoot->mContext->mModuleConfig);
 	}
