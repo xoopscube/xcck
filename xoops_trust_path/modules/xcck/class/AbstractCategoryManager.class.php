@@ -24,14 +24,12 @@ Abstract class Xcck_AbstractCategoryManager
 
 	/**
 	 * __construct
-	 * 
-	 * @param	string	$categoryDir
-	 * @param	string	$dirname	this module's dirname
-	 * @param	string	$dataname	this module's dataname
-	 * 
-	 * @return	void
-	**/
-	abstract public function __construct(/*** string ***/ $CategoryDir, /*** string ***/ $dirname, /*** string ***/ $dataname=null);
+	 *
+	 * @param string      $CategoryDir
+	 * @param string      $dirname  this module's dirname
+	 * @param string|null $dataname this module's dataname
+	 */
+	abstract public function __construct( string $CategoryDir, string $dirname, string $dataname=null);
 
 	/**
 	 * getCategoryType
@@ -169,5 +167,3 @@ Abstract class Xcck_AbstractCategoryManager
 	**/
 	abstract public function getPermittedIdList(/*** string ***/ $action, /*** int ***/ $categoryId=0);
 }
-
-?>

@@ -40,10 +40,7 @@ class Xcck_Definition
             return false;
         }
         $objs = $this->_getHandler()->getObjects();
-        $code = "<?php
-if (!defined('XOOPS_ROOT_PATH')) exit();
-%s
-?>";
+        $code = "<?php if (!defined('XOOPS_ROOT_PATH')) exit(); %s ?>";
     
         $arrayString = null;
         foreach(array_keys($objs) as $key){
@@ -100,4 +97,3 @@ $def[%d] = array(
 ';
     }
 }
-?>

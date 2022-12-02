@@ -1,11 +1,27 @@
-<div class="adminPage">
-<h1><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT}></h1>
+<div class="adminnavi" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php?action=Index"><{$legacy_module}></a>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=TemplateOutput"><{$smarty.const._MI_XCCK_LANG_TEMPLATE_OUTPUT}></a></span>
+</div>
 
-<h2><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT_VIEW}></h2>
-<p class="description">
-<{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_VIEW}>
-</p>
-<textarea rows="10" cols="60">
+
+<{include file="admin_menu.html"}>
+
+
+<div class="ui-card-full">
+
+    <h2><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT}></h2>
+
+    <h3><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT_VIEW}></h3>
+
+    <div class="tips">
+        <p class="description">
+            <{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_VIEW}>
+        </p>
+    </div>
+
+<div class="textarea-wrap">
+<textarea id="output-view" readonly>
 <{foreach item=definition from=$definitions}>
 <{if $definition->get('field_type')!='startdate'||$definition->get('field_type')!='enddate'}>
 <dt>&lt;{$definitions.<{$definition->getShow('field_name')}>->getShow('label')}&gt;</dt>
@@ -13,19 +29,29 @@
 <{/if}>
 <{/foreach}>
 </textarea>
+    <div id="copyToClipboard1" class="clipboard icon" title="Copy To Clipboard"></div>
+</div><{* textarea wrapper *}>
+
+
+<hr>
 
 
 <h2><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT_EDIT}></h2>
-<p class="description">
-<{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_EDIT}>
-</p>
-<textarea rows="10" cols="60">
+
+    <div class="tips">
+        <p class="description">
+            <{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_EDIT}>
+        </p>
+    </div>
+
+<div class="textarea-wrap">
+<textarea id="output-edit" readonly>
 <{foreach item=definition from=$definitions}>
   <tr>
     <th<{if $definition->get('required')==true}> class="required"<{/if}>>&lt;{$fields.<{$definition->getShow('field_name')}>->getShow('label')}&gt;</th>
     <td>
 <{if $definition->get('field_type')=="string"}>
-      &lt;{xoops_input type=text name=<{$definition->getShow('field_name')}> value=$actionForm->get('<{$definition->getShow('field_name')}>')  size=40 maxlength=255}&gt;
+      &lt;{xoops_input type=text name=<{$definition->getShow('field_name')}> value=$actionForm->get('<{$definition->getShow('field_name')}>')  size=40 maxlength=191}&gt;
 <{elseif $definition->get('field_type')=="int"}>
       &lt;{xoops_input type=text name=<{$definition->getShow('field_name')}> value=$actionForm->get('<{$definition->getShow('field_name')}>') size=15 maxlength=11}&gt;
 <{elseif $definition->get('field_type')=="uri"}>
@@ -73,15 +99,28 @@
   </tr>
   <{/foreach}>
 </textarea>
+    <div id="copyToClipboard2" class="clipboard icon" title="Copy To Clipboard"></div>
+</div><{* textarea wrapper *}>
+
+
+<hr>
 
 
 <h2><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT_LIST}></h2>
-<p class="description">
-<{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_LIST}>
-</p>
-<textarea rows="10" cols="60">
-  <{foreach item=def from=$definitions}>
-  <dd class="itemBody">&lt;{$obj->showField('<{$def->getShow('field_name')}>')}&gt;</dd>
-  <{/foreach}>
-</textarea>
+
+    <div class="tips">
+        <p class="description">
+            <{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_LIST}>
+        </p>
+    </div>
+
+    <div class="textarea-wrap">
+    <textarea id="output-list" readonly>
+      <{foreach item=def from=$definitions}>
+      <dd class="itemBody">&lt;{$obj->showField('<{$def->getShow('field_name')}>')}&gt;</dd>
+      <{/foreach}>
+    </textarea>
+        <div id="copyToClipboard3" class="clipboard icon" title="Copy To Clipboard"></div>
+    </div><{* textarea wrapper *}>
+
 </div>

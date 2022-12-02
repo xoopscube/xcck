@@ -17,22 +17,24 @@ if(!defined('XCCK_TRUST_PATH'))
 
 require_once XCCK_TRUST_PATH . '/class/XcckUtils.class.php';
 
-//
-// Define a basic manifesto.
-//
-$modversion['name'] = $myDirName;
-$modversion['version'] = 1.21;
-$modversion['description'] = _MI_XCCK_DESC_XCCK;
-$modversion['author'] = _MI_XCCK_LANG_AUTHOR;
-$modversion['credits'] = _MI_XCCK_LANG_CREDITS;
-$modversion['help'] = 'help.html';
-$modversion['license'] = 'GPL';
-$modversion['official'] = 0;
-$modversion['image'] = 'images/xcck.png';
-$modversion['dirname'] = $myDirName;
-$modversion['trust_dirname'] = 'xcck';
+// Manifesto
+$modversion['dirname']          = $myDirName;
+$modversion['trust_dirname']    = 'xcck';
+$modversion['name']             = $myDirName;
+$modversion['version']          = '1.23';
+$modversion['detailed_version'] = '1.23.1';
+$modversion['description']      = _MI_XCCK_DESC_XCCK;
+$modversion['author']           = _MI_XCCK_LANG_AUTHOR;
+$modversion['credits']          = _MI_XCCK_LANG_CREDITS;
+$modversion['license']          = 'GPL';
+$modversion['image']            = 'images/module_xcck.svg';
+$modversion['icon']             = 'images/module_icon.svg';
+$modversion['help']             = 'help.html';
+$modversion['official']         = 0;
+$modversion['cube_style']       = true;
+$modversion['read_any']         = true;
 
-$modversion['cube_style'] = true;
+// SQL install
 $modversion['legacy_installer'] = array(
     'installer'   => array(
         'class'     => 'Installer',
@@ -87,6 +89,7 @@ $modversion['templates'] = array(
     array('file' => '{dirname}_definition_view.html','description' => _MI_XCCK_TPL_DEFINITION_VIEW),
     array('file' => '{dirname}_subtable_view.html','description' => _MI_XCCK_TPL_SUBTABLE_VIEW),
     array('file' => '{dirname}_inc_menu.html','description' => 'menu'),
+    array('file' => '{dirname}_inc_breadcrumbs.html','description' => 'breadcrumbs'),
 ##[/cubson:templates]
 );
 
@@ -431,5 +434,3 @@ $modversion['blocks'] = array(
 ##[cubson:block]
 ##[/cubson:block]
 );
-
-?>

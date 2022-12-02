@@ -178,5 +178,3 @@ class Xcck_ListBlock extends Legacy_BlockProcedure
         $renderSystem->renderBlock($render);
     }
 }
-
-?>

@@ -82,4 +82,3 @@ class Xcck_SearchUtils
     }
 
 }
-?>

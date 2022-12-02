@@ -1,45 +1,79 @@
-<div class="xcck">
-<div class="page-header">
-  <h1><{$xoops_modulename}> <{$smarty.const._MD_XCCK_LANG_DEFINITION}> <{$smarty.const._LIST}></h1>
-</div>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<div class="description"><{$smarty.const._MD_XCCK_DESC_DEFAULT_FIELDS}></div>
+<{* 🔻 TODO 🛠 breadcrumbs fatal *}>
+<{* include file="db:`$dirname`_inc_breadcrumbs.html" *}>
+<nav aria-label="breadcrumb">
+    <ul>
+        <li>
+            <a href="<{$xoops_url}>/">
+                <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home">
+            </a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname}>">
+                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category"> <{$xoops_modulename}>
+            </a>
+        </li>
+    </ul>
+</nav>
 
-<{if count($objects) > 0}>
-  <table class="table striped">
-    <thead>
-      <tr>
-        <th>
-          <{$smarty.const._MD_XCCK_LANG_FIELD_NAME}>
-        </th>
-        <th>
-          <{$smarty.const._MD_XCCK_LANG_LABEL}>
-        </th>
-        <th>
-          <{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}>
-        </th>
-        <th>
-          <{$smarty.const._MD_XCCK_LANG_WEIGHT}>
-        </th>
-        <th><{$smarty.const._MD_XCCK_LANG_CONTROL}></th>
-      </tr>
-    </thead>
-    <tbody>
-      <{foreach item=obj from=$objects}>
-        <tr class="<{cycle values='odd,even'}>">
-          <td><a href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$obj->getShow('definition_id')}>"><{$obj->getShow('field_name')}></a></td>
-          <td><{$obj->getShow('label')}></td>
-          <td><{$obj->getShow('field_type')}></td>
-          <td><{$obj->getShow('weight')}></td>
-          <td>
-            <a class="btn btn-small" href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$obj->getShow('definition_id') action=edit}>"><i class="icon-pencil"></i> <{$smarty.const._EDIT}></a>
-            <a class="btn btn-small" href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$obj->getShow('definition_id') action=delete}>"><i class="icon-trash"></i> <{$smarty.const._DELETE}></a>
-          </td>
+<article class="xcck">
+
+    <header class="page-header">
+        <h2>
+            <img class="svg options" src="<{$xoops_url}>/images/icons/options.svg" width="1em" height="1em" alt="options">
+            <{$xoops_modulename}> <{$smarty.const._MD_XCCK_LANG_DEFINITION}> <{$smarty.const._LIST}></h2>
+
+        <div class="description"><{$smarty.const._MD_XCCK_DESC_DEFAULT_FIELDS}></div>
+    </header>
+
+
+    <{if count($objects) > 0}>
+    <table class="table striped">
+        <thead>
+        <tr>
+            <th>
+                <{$smarty.const._MD_XCCK_LANG_FIELD_NAME}>
+            </th>
+            <th>
+                <{$smarty.const._MD_XCCK_LANG_LABEL}>
+            </th>
+            <th>
+                <{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}>
+            </th>
+            <th class="list-order">
+                <{$smarty.const._MD_XCCK_LANG_WEIGHT}>
+            </th>
+            <th class="list-action"><{$smarty.const._MD_XCCK_LANG_CONTROL}></th>
         </tr>
-      <{/foreach}>
-    </tbody>
-  </table>
-  <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
-<{/if}>
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=false}>
-</div>
+        </thead>
+        <tbody>
+        <{foreach item=obj from=$objects}>
+        <tr class="<{cycle values='odd,even'}>">
+            <td><a href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$obj->getShow('definition_id')}>"><{$obj->getShow('field_name')}></a></td>
+            <td><{$obj->getShow('label')}></td>
+            <td><{$obj->getShow('field_type')}></td>
+            <td class="list-order"><{$obj->getShow('weight')}></td>
+            <td class="list-action">
+                <a class="i-edit" href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$obj->getShow('definition_id') action=edit}>" data-tooltip="<{$smarty.const._EDIT}>">
+                    <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"></a>
+                <a class="i-delete" href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$obj->getShow('definition_id') action=delete}>" data-tooltip="<{$smarty.const._DELETE}>">
+                    <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"></a>
+            </td>
+        </tr>
+        <{/foreach}>
+        </tbody>
+    </table>
+
+    <footer>
+        <div class="grid-2">
+            <{* FATAL menu error *}>
+            <{* include file="db:`$dirname`_inc_menu.html" isSubtable=false *}>
+            <nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+        </div>
+    </footer>
+
+    <{/if}>
+
+</article>

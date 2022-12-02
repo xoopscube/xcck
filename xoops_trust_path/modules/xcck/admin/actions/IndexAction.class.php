@@ -69,5 +69,3 @@ class Xcck_Admin_IndexAction extends Xcck_AbstractAction
 	}
 
 }
-
-?>

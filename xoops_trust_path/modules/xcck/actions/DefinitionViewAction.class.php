@@ -94,7 +94,6 @@ class Xcck_DefinitionViewAction extends Xcck_AbstractViewAction
 	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
 	{
 		$this->mRoot->mController->executeRedirect($this->_getNextUri('definition', 'list'), 1, _MD_XCCK_ERROR_CONTENT_IS_NOT_FOUND);
+
 	}
 }
-
-?>

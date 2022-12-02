@@ -32,9 +32,9 @@ class Xcck_FieldType
 
     /**
      * getTypeList
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string[]
     **/
     public static function getTypeList()
@@ -72,23 +72,24 @@ class Xcck_FieldTypeString implements Xcck_iFieldType
         elseif($option==Xcck_ActionType::EDIT){
             $value = $obj->get($key);
         }
-    
+
         return $value;
     }
 
     public function getTableQuery()
     {
-        return 'VARCHAR(255) NOT NULL';
+        return 'VARCHAR(191) NOT NULL';
     }
 
     public function setInitVar(/*** Xcck_DataObject ***/ $obj, /*** string ***/ $key, /*** string ***/ $default)
     {
-        $obj->initVar($key, $this->getXObjType(), $default, false, 255);
+        $obj->initVar($key, $this->getXObjType(), $default, false, 191);
     }
 
     public function getDefault(/*** string ***/ $option)
     {
-        return isset($option) ? $option : '';
+        //return isset($option) ? $option : '';
+        return $option ?? '';
     }
 
     public function getXObjType()
@@ -113,7 +114,7 @@ class Xcck_FieldTypeString implements Xcck_iFieldType
 }
 
 
-/** --------------------------------------------------------
+/**
  *  Text Type
 **/
 class Xcck_FieldTypeText implements Xcck_iFieldType
@@ -209,7 +210,8 @@ class Xcck_FieldTypeInt implements Xcck_iFieldType
 
     public function getDefault(/*** string ***/ $option)
     {
-        return isset($option) ? $option : '';
+        //return isset($option) ? $option : '';
+        return $option ?? '';
     }
 
     public function getXObjType()
@@ -259,7 +261,8 @@ class Xcck_FieldTypeFloat implements Xcck_iFieldType
 
     public function getDefault(/*** string ***/ $option)
     {
-        return isset($option) ? $option : 0;
+        // return isset($option) ? $option : 0;
+        return $option ?? 0;
     }
 
     public function getXObjType()
@@ -303,7 +306,7 @@ class Xcck_FieldTypeDate implements Xcck_iFieldType
             $format = (in_array($obj->mDef[$key]->get('options'), array('hour','half','quarter','10min','min'))) ? "m" : "s";
             $value = ($obj->get($key)) ? formatTimestamp($obj->get($key), $format) : "";
         }
-    
+
         return $value;
     }
 
@@ -363,7 +366,7 @@ class Xcck_FieldTypeStartdate extends Xcck_FieldTypeDate
             $format = (in_array($obj->mDef[$key]->get('options'), array('hour','half','quarter','10min','min'))) ? "m" : "s";
             $value = ($obj->get($key)) ? formatTimestamp($obj->get($key), $format) : "";
         }
-    
+
         return $value;
     }
 }
@@ -726,7 +729,9 @@ class Xcck_CheckboxArrayProperty extends XCube_IntArrayProperty
 {
 	public function __construct($name)
 	{
-		parent::XCube_IntArrayProperty($name);
+		// TODO Error Error: Call to undefined method
+        //parent::XCube_IntArrayProperty($name);
+        parent::__construct($name);
 	}
 /*
 	public function hasFetchControl()
@@ -828,12 +833,12 @@ class Xcck_FieldTypeFile implements Xcck_iFieldType
 
     public function getTableQuery()
     {
-        return 'VARCHAR(255) NOT NULL';
+        return 'VARCHAR(191) NOT NULL';
     }
 
     public function setInitVar(/*** Xcck_DataObject ***/ $obj, /*** string ***/ $key, /*** string ***/ $default)
     {
-        $obj->initVar($key, $this->getXObjType(), $default, false, 255);
+        $obj->initVar($key, $this->getXObjType(), $default, false, 191);
     }
 
     public function getDefault(/*** string ***/ $option)
@@ -872,7 +877,3 @@ class Xcck_FieldTypeFile implements Xcck_iFieldType
         return $options;
     }
 }
-
-
-
-?>

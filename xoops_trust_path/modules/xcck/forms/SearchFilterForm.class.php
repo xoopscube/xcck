@@ -22,11 +22,11 @@ class Xcck_SearchFilterForm extends Xcck_PageFilterForm
     /**
      * fetch
      * 
-     * @param   string    $dirname
+     * @param string $dirname
      * 
      * @return  void
     **/
-    public function fetch($dirname)
+    public function fetch(string $dirname)
     {
         $this->mNavi->fetch();
         $this->fetchSort();    
@@ -142,7 +142,7 @@ class Xcck_SearchFilterForm extends Xcck_PageFilterForm
                     case Xcck_FieldType::TEXT:
                     case Xcck_FieldType::URI:
                         if (! $value) {
-                            continue;
+                            continue; // TODO "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?
                         }
                         if ($cond === Xcck_Cond::LIKE || $cond === Xcck_Cond::NOTLIKE) {
                             $reqArr = Xcck_SearchUtils::splitKeywords($value);

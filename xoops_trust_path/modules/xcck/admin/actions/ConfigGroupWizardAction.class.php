@@ -31,5 +31,3 @@ class Xcck_Admin_ConfigGroupWizardAction extends Xcck_Admin_ConfigCatWizardActio
 		return Legacy_Utils::getCommonModuleList('group');
 	}
 }
-
-?>

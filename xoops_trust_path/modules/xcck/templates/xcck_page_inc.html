@@ -1,1 +1,10 @@
-<div class="xcck"><a href="<{xoops_cooluri dirname=$data->getDirname() data_id=$data->get('page_id')}>"><{$data->getShow('title')}></a> <{$data->getShow('updatetime')|xoops_formattimestamp:m}></div>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<h4 class="xcck">
+    <span>
+    <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
+    <a href="<{xoops_cooluri dirname=$data->getDirname() data_id=$data->get('page_id')}>"><{$data->getShow('title')}></a>
+    </span>
+    <span class="badge"><{$data->getShow('updatetime')|xoops_formattimestamp:m}></span>
+</h4>

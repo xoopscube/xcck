@@ -264,5 +264,3 @@ class Xcck_Uninstaller
         return true;
     }
 }
-
-?>

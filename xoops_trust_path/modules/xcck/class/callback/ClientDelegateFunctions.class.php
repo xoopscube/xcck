@@ -182,8 +182,9 @@ class Xcck_CommentClientDelegate implements Legacy_iCommentClientDelegate
 		}
 	
 		//get dirname list of xCCK
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
-	
+		//$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
 		$handler = xoops_gethandler('config');
 		foreach($dirnames as $dir){
 			//setup client module info
@@ -221,8 +222,10 @@ class Xcck_ActivityClientDelegate implements Legacy_iActivityClientDelegate
 		}
 	
 		//get dirname list of xCCK
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
-	
+        //$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
+
 		$handler = xoops_gethandler('config');
 		foreach($dirnames as $dir){
 			//setup client module info
@@ -323,8 +326,10 @@ class Xcck_WorkflowClientDelegate implements Legacy_iWorkflowClientDelegate
 		}
 	
 		//dirname list of xCCK
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
-	
+		//$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
+
 		$handler = xoops_gethandler('config');
 		foreach($dirnames as $dir){
 			//setup client module info
@@ -357,7 +362,9 @@ class Xcck_WorkflowClientDelegate implements Legacy_iWorkflowClientDelegate
 			return;
 		}
 	
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+		//$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
 		foreach($dirnames as $xcckDirname){
 			if($dirname == $xcckDirname && $dataname=='page'){
 				$handler = Legacy_Utils::getModuleHandler('revision', $dirname);
@@ -385,8 +392,9 @@ class Xcck_ImageClientDelegate implements Legacy_iImageClientDelegate
 	 */ 
 	public static function getClientList(/*** mixed[] ***/ &$list)
 	{
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
-	
+		//$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
 		//don't call this method multiple times when site owner duplicate this module.
 		static $isCalled = false;
 		if($isCalled === true){
@@ -431,8 +439,10 @@ class Xcck_GroupClientDelegate implements Legacy_iGroupClientDelegate
 		}
 	
 		//get dirname list of xCCK
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
-	
+		// $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
+
 		$handler = xoops_gethandler('config');
 		foreach($dirnames as $dir){
 			//setup client module info
@@ -497,7 +507,9 @@ class Xcck_GroupClientDelegate implements Legacy_iGroupClientDelegate
 	 */ 
 	public static function getActionList(&$list, $dirname, $dataname)
 	{
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+		//$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
 		if(! in_array($dirname, $dirnames)){
 			return;
 		}
@@ -558,8 +570,10 @@ class Xcck_MapClientDelegate //implements Legacy_iMapClientDelegate
 		}
 	
 		//get dirname list of xCCK
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
-	
+		// $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
+
 		$handler = xoops_gethandler('config');
 		foreach($dirnames as $dir){
 			//setup client module info
@@ -607,4 +621,3 @@ class Xcck_MapClientDelegate //implements Legacy_iMapClientDelegate
 		}
 	}
 }
-?>

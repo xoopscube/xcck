@@ -1,31 +1,80 @@
-<div class="xcck">
-<div class="page-header">
-  <h1><{$object->getShow('label')}> <{$smarty.const._MD_XCCK_LANG_DEFINITION}> <{$smarty.const._EDIT}></h1>
-</div>
-<a href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$object->getShow('definition_id') action=edit}>"><{$smarty.const._MD_XCCK_LANG_DEFINITION_EDIT}></a>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<dl class="dl-horizontal">
-  <dt><{$smarty.const._MD_XCCK_LANG_FIELD_NAME}></dt>
-  <dd><{$object->getShow('field_name')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_LABEL}></dt>
-  <dd><{$object->getShow('label')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}></dt>
-  <dd><{$object->getShow('field_type')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_VALIDATION}></dt>
-  <dd><{$object->getShow('validation')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_REQUIRED}></dt>
-  <dd><{$object->getShow('required')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_WEIGHT}></dt>
-  <dd><{$object->getShow('weight')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_SHOW_LIST}></dt>
-  <dd><{$object->getShowYN('show_list')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_SEARCH_FLAG}></dt>
-  <dd><{$object->getShowYN('search_flag')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_DESCRIPTION}></dt>
-  <dd><{$object->getShow('description')}></dd>
-  <dt><{$smarty.const._MD_XCCK_LANG_OPTIONS}></dt>
-  <dd><{$object->getShow('options')}></dd>
-</dl>
+<{* 🔻 TODO 🛠 breadcrumbs fatal *}>
+<{* include file="db:`$dirname`_inc_breadcrumbs.html" *}>
+<nav aria-label="breadcrumb">
+    <ul>
+        <li>
+            <a href="<{$xoops_url}>/">
+                <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home">
+            </a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname}>">
+                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category"> <{$xoops_modulename}>
+            </a>
+        </li>
+    </ul>
+</nav>
 
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable}>
-</div>
+<article class="xcck">
+
+    <header>
+        <h2 class="action-control">
+            <span><{$smarty.const._EDIT}> <{$smarty.const._MD_XCCK_LANG_DEFINITION}> : <{$object->getShow('label')}></span>
+            <a href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$object->getShow('definition_id') action=edit}>" data-tooltip="<{$smarty.const._MD_XCCK_LANG_DEFINITION_EDIT}>">
+                <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit">
+           </a>
+        </h2>
+    </header>
+
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_FIELD_NAME}>
+    <input type="text" value="<{$object->getShow('field_name')}>" placeholder="valid" aria-valid="true" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_LABEL}>
+    <input type="text" value="<{$object->getShow('label')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_FIELD_TYPE}>
+    <input type="text" value="<{$object->getShow('field_type')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_VALIDATION}>
+    <input type="text" value="<{$object->getShow('validation')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_REQUIRED}>
+    <input type="text" value="<{$object->getShow('required')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_WEIGHT}>
+    <input type="text" value="<{$object->getShow('weight')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_SHOW_LIST}>
+    <input type="text" value="<{$object->getShowYN('show_list')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_SEARCH_FLAG}>
+    <input type="text" value="<{$object->getShowYN('search_flag')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_DESCRIPTION}>
+    <input type="text" value="<{$object->getShow('description')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+    <label class="grid-2">
+        <{$smarty.const._MD_XCCK_LANG_OPTIONS}>
+    <input type="text" value="<{$object->getShow('options')}>" placeholder="valid" aria-valid="false" readonly>
+    </label>
+
+    <footer>
+        <{* NOTE : Error if include menu *}>
+        <{* include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable *}>
+        <a role="button" class="primary" href="<{xoops_cooluri dirname=$dirname dataname=definition data_id=$object->getShow('definition_id') action=edit}>">
+            <{$smarty.const._MD_XCCK_LANG_DEFINITION_EDIT}></a>
+    </footer>
+
+</article>

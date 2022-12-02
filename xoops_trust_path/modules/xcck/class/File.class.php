@@ -115,4 +115,3 @@ class Xcck_File
         return file_exists($this->getPath($fileName));
     }
 }
-

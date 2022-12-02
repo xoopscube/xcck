@@ -1,52 +1,91 @@
-<div class="xcck">
-<div class="page-header">
-  <h1><{$xoops_modulename}> <{$smarty.const._LIST}></h1>
-</div>
-<{if $moduleDescription}>
-<div><{$moduleDescription}></div>
-<{/if}>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<{if count($objects) > 0}>
-  <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
-  <{foreach item=obj from=$objects}>
-  <dl class="item">
-    <dt class="itemTitle">
-      <{if $obj->getShow('status')<9}><span class="status" title="<{$obj->getShowStatus()}>">*</span> <{/if}><a href="<{xoops_cooluri dirname=$dirname data_id=$obj->getShow('page_id')}>"><{$obj->getShow('title')}></a>
-      <{if $accessController->isEditor($obj->get('category_id'), $obj->get('uid'))}>
-      <a class="btn" href="<{xoops_cooluri dirname=$dirname dataname=$editPageName data_id=$obj->getShow('page_id') action=edit}>"><i class="icon-pencil"></i> <{$smarty.const._EDIT}></a>
-      <a class="btn" href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=delete}>"><i class="icon-trash"></i> <{$smarty.const._DELETE}></a>
-      <{/if}>
-    </dt>
-    <dd class="itemInfo">
-      <{if $catTitleList}>
-      <{assign var="catId" value=$obj->get('category_id')}>
-      <span class="itemStat"><{$catTitleList.$catId|xoops_escape}></span>
-      <{/if}>
-      <span class="itemPoster"><{$obj->getShow('uid')|xoops_user:"user_name"}></span>
-      <span class="itemPostDate"><{$obj->get('posttime')|xoops_formattimestamp:s}></span>
-    </dd>
-    <!--
-      if you want to show field outside foreach loop, you can write down 
-      like below (when the field's name is "memo").
-      <dd>< {$obj->showField($definitions.memo->get('field_name'))} ></dd>
-    -->
-    <{foreach item=def from=$definitions}>
-    <{if $def->get('field_type')=='checkbox'}>
-    <dd>
-      <ul>
-        <{assign var=titleArr value=$obj->showField($def->get('field_name'))}>
-        <{foreach item=option from=$titleArr.checked}>
-        <li><{$option}></li>
+<{include file="db:`$dirname`_inc_breadcrumbs.html"}>
+
+<article class="xcck">
+
+    <header class="page-header">
+        <h2>
+            <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category">
+            <{$xoops_modulename}> <{$smarty.const._LIST}>
+        </h2>
+        <{if $moduleDescription}>
+        <div class="description"><{$moduleDescription}></div>
+        <{/if}>
+
+        <div class="grid-2">
+            <{include file="db:`$dirname`_inc_menu.html" isSubtable=false isPoster=$accessController->isPoster()}>
+            <{if count($objects) > 0}>
+            <nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+            <{/if}>
+        </div>
+    </header>
+
+
+    <{* if count($objects) > 0 *}>
+<!--    <nav class="pagination"><{* xoops_pagenavi pagenavi=$pageNavi *}></nav>-->
+
+    <{* ----- Loop Items ----- *}>
+
+    <{foreach item=obj from=$objects}>
+    <div class="item">
+
+        <div class="headings">
+        <h4 class="itemTitle">
+           <span>
+            <{if $obj->getShow('status')<9}><span class="badge warning status" data-tooltip="<{$obj->getShowStatus()}>">*</span><{/if}>
+            <a href="<{xoops_cooluri dirname=$dirname data_id=$obj->getShow('page_id')}>">
+                <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="page">
+                <{$obj->getShow('title')}></a>
+            </span>
+            <{* TODO Action Delete available in page view only - to prevent acidental delete *}>
+            <{if $accessController->isEditor($obj->get('category_id'), $obj->get('uid'))}>
+            <span>
+                <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->getShow('page_id') action=delete}>" data-tooltip="<{$smarty.const._DELETE}>">
+                <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"></a>
+                <a href="<{xoops_cooluri dirname=$dirname dataname=$editPageName data_id=$obj->getShow('page_id') action=edit}>" data-tooltip="<{$smarty.const._EDIT}>">
+                <img class="svg edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="edit"></a>
+            </span>
+            <{/if}>
+        </h4>
+
+        <span class="activity itemInfo">
+            <{if $catTitleList}>
+            <{assign var="catId" value=$obj->get('category_id')}>
+            <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
+            <span class="badge itemStat"><{$catTitleList.$catId|xoops_escape}></span>
+            <{/if}>
+            <span class="post-author"><{$obj->getShow('uid')|xoops_user:"user_name"}></span>
+            <img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" width="1em" height="1em" alt="datetime">
+            <span class="badge post-date"><{$obj->get('posttime')|xoops_formattimestamp:s}></span>
+        </span>
+        </div>
+        <!--
+          if you want to show field outside foreach loop, you can write down
+          like below (when the field's name is "memo").
+          <dd>< {$obj->showField($definitions.memo->get('field_name'))} ></dd>
+        -->
+        <{foreach item=def from=$definitions}>
+        <{if $def->get('field_type')=='checkbox'}>
+            <{assign var=titleArr value=$obj->showField($def->get('field_name'))}>
+                <{foreach item=option from=$titleArr.checked}>
+                <label><{$option}></label>
+                <{/foreach}>
+        <{else}>
+            <div class="item-body"><{$obj->showField($def->getShow('field_name'))}></div>
+        <{/if}>
         <{/foreach}>
-      </ul>
-    </dd>
-    <{else}>
-    <dd class="itemBody"><{$obj->showField($def->getShow('field_name'))}></dd>
-    <{/if}>
+    </div>
     <{/foreach}>
-  </dl>
-  <{/foreach}>
-  <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
-<{/if}>
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=false isPoster=$accessController->isPoster()}>
-</div>
+
+    <footer>
+        <div class="grid-2">
+            <{include file="db:`$dirname`_inc_menu.html" isSubtable=false isPoster=$accessController->isPoster()}>
+            <{if count($objects) > 0}>
+            <nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+            <{/if}>
+        </div>
+    </footer>
+
+</article>

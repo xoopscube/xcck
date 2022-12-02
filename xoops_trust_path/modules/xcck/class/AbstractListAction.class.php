@@ -110,5 +110,3 @@ abstract class Xcck_AbstractListAction extends Xcck_AbstractAction
         return $this->getDefaultView();
     }
 }
-
-?>

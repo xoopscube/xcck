@@ -290,7 +290,9 @@ class Xcck_DelegateFunctions
         }
     
     	$uid = $user->get('uid');
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        // TODO dirname using the levels parameter instead.
+        //$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+		$dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(__FILE__, 3)));
 		foreach($dirnames as $dirname){
 			$handler = Legacy_Utils::getModuleHandler('page', $dirname);
 			$handler->deleteAll(new Criteria('uid', $uid));
@@ -299,4 +301,3 @@ class Xcck_DelegateFunctions
         $isCalled = true;
 	}
 }
-?>

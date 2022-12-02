@@ -159,5 +159,3 @@ class Xcck_CategoryBlock extends Legacy_BlockProcedure
         $renderSystem->renderBlock($render);
     }
 }
-
-?>

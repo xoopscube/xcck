@@ -1228,5 +1228,3 @@ class Xcck_InstallUtils
 		return true;
 	}
 }
-
-?>

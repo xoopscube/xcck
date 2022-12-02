@@ -1,63 +1,74 @@
-<div class="xcck">
-<div class="page-header">
-  <h1><{$smarty.const._MD_XCCK_LANG_PAGE_DELETE}></h1>
-</div>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<div class="alert alert-warning"><{$smarty.const._MD_XCCK_MESSAGE_CONFIRM_DELETE}></div>
+<article class="xcck">
 
-<form class="form-horizontal" action="<{xoops_cooluri dirname=$dirname dataname=page action=delete}>" method="post">
-  <div class="control-group">
-    <label class="control-label" for="page_id"><{$smarty.const._MD_XCCK_LANG_PAGE_ID}></label>
-    <div class="controls"><{$object->getShow('page_id')}></div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="title"><{$smarty.const._MD_XCCK_LANG_TITLE}></label>
-    <div class="controls"><{$object->getShow('title')}></div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="uid"><{$smarty.const._MD_XCCK_LANG_UID}></label>
-    <div class="controls"><{$object->getShow('uid')|xoops_user:"user_name"}></div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="posttime"><{$smarty.const._MD_XCCK_LANG_POSTTIME}></label>
-    <div class="controls"><{$object->get('posttime')|xoops_formattimestamp:l}></div>
-  </div>
-  <div class="form-actions">
-    <{xoops_token form=$actionForm}>
-    <{xoops_input type=hidden name=page_id value=$actionForm->get('page_id')}>
-    <button type="submit" class="btn btn-primary"><{$smarty.const._DELETE}></button>
-    <button type="submit" class="btn" name="_form_control_cancel" value="cancel"><{$smarty.const._CANCEL}></button>
-  </div>
-</form>
+    <header>
+        <h2><{$smarty.const._MD_XCCK_LANG_PAGE_DELETE}></h2>
+    </header>
 
-<{if $isHierarchical==true}>
-<div class="pageTree">
-<h2><{$smarty.const._MD_XCCK_LANG_PAGE_TREE}></h2>
-<div class="alert alert-warning"><{$smarty.const._MD_XCCK_LANG_PAGE_TREE_DELETE}></div>
-<{foreach item=page from=$pageTree name=pageTree}>
-<{if $smarty.foreach.pageTree.first}>
-<{assign var=d value=$page->getDepth()}>
-<{/if}>
-<{if $smarty.foreach.pageTree.first || $d < $page->getDepth()}>
-  <ul class="catL<{$page->getDepth()}>">
-    <li><a href="<{xoops_cooluri dirname=$dirname dataname=page data_id=$page->getShow('page_id')}>"><{$page->getShow('title')}></a></li>
-<{elseif $d==$page->getDepth()}>
-    <li><a href="<{xoops_cooluri dirname=$dirname dataname=page data_id=$page->getShow('page_id')}>"><{$page->getShow('title')}></a></li>
-<{else}>
-  <{section name=i start=0 loop=$d-$page->getDepth()}>
-  </ul>
-  <{/section}>
-    <li><a href="<{xoops_cooluri dirname=$dirname dataname=page data_id=$page->getShow('page_id')}>"><{$page->getShow('title')}></a></li>
-<{/if}>
-<{if $smarty.foreach.pageTree.first}>
-  <{section name=i start=0 loop=$page->getDepth()}>
-  </ul>
-  <{/section}>
-<{/if}>
-<{assign var=d value=$page->getDepth()}>
-<{/foreach}>
-</div><!-- .pageTree -->
-<{/if}>
+    <div class="alert alert-warning"><{$smarty.const._MD_XCCK_MESSAGE_CONFIRM_DELETE}></div>
 
-<{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable isPoster=$accessController->isPoster()}>
-</div>
+    <form action="<{xoops_cooluri dirname=$dirname dataname=page action=delete}>" method="post">
+
+        <label for="page_id">
+            <{$smarty.const._MD_XCCK_LANG_PAGE_ID}>
+            <{$object->getShow('page_id')}>
+        </label>
+
+        <label for="title">
+            <{$smarty.const._MD_XCCK_LANG_TITLE}>
+            <{$object->getShow('title')}>
+        </label>
+
+        <label for="uid">
+            <{$smarty.const._MD_XCCK_LANG_UID}>
+            <{$object->getShow('uid')|xoops_user:"user_name"}>
+        </label>
+
+        <label for="posttime">
+            <{$smarty.const._MD_XCCK_LANG_POSTTIME}>
+            <{$object->get('posttime')|xoops_formattimestamp:l}>
+        </label>
+
+        <footer>
+        <div class=" grid-2 form-actions">
+            <{xoops_token form=$actionForm}>
+            <{xoops_input type=hidden name=page_id value=$actionForm->get('page_id')}>
+            <button type="submit" class="btn btn-primary"><{$smarty.const._DELETE}></button>
+            <button type="submit" class="btn" name="_form_control_cancel" value="cancel"><{$smarty.const._CANCEL}></button>
+        </div>
+        </footer>
+    </form>
+
+    <{if $isHierarchical==true}>
+    <div class="pageTree">
+        <h2><{$smarty.const._MD_XCCK_LANG_PAGE_TREE}></h2>
+        <div class="alert alert-warning"><{$smarty.const._MD_XCCK_LANG_PAGE_TREE_DELETE}></div>
+        <{foreach item=page from=$pageTree name=pageTree}>
+        <{if $smarty.foreach.pageTree.first}>
+            <{assign var=d value=$page->getDepth()}>
+        <{/if}>
+        <{if $smarty.foreach.pageTree.first || $d < $page->getDepth()}>
+        <ul class="catL<{$page->getDepth()}> post-tree">
+            <li class="post-tree-item"><a href="<{xoops_cooluri dirname=$dirname dataname=page data_id=$page->getShow('page_id')}>"><{$page->getShow('title')}></a></li>
+            <{elseif $d==$page->getDepth()}>
+            <li class="post-tree-item"><a href="<{xoops_cooluri dirname=$dirname dataname=page data_id=$page->getShow('page_id')}>"><{$page->getShow('title')}></a></li>
+            <{else}>
+            <{section name=i start=0 loop=$d-$page->getDepth()}>
+        </ul>
+        <{/section}>
+        <li class="post-tree-item"><a href="<{xoops_cooluri dirname=$dirname dataname=page data_id=$page->getShow('page_id')}>"><{$page->getShow('title')}></a></li>
+        <{/if}>
+        <{if $smarty.foreach.pageTree.first}>
+        <{section name=i start=0 loop=$page->getDepth()}>
+        </ul>
+        <{/section}>
+        <{/if}>
+        <{assign var=d value=$page->getDepth()}>
+        <{/foreach}>
+    </div><!-- .pageTree -->
+    <{/if}>
+
+    <{include file="db:`$dirname`_inc_menu.html" isSubtable=$isSubtable isPoster=$accessController->isPoster()}>
+</article>

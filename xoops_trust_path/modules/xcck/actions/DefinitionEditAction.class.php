@@ -19,9 +19,9 @@ class Xcck_DefinitionEditAction extends Xcck_AbstractEditAction
 {
     /**
      * &_getHandler
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Xcck_DefinitionHandler
     **/
     protected function &_getHandler()
@@ -32,9 +32,9 @@ class Xcck_DefinitionEditAction extends Xcck_AbstractEditAction
 
     /**
      * _getPageTitle
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     protected function _getPagetitle()
@@ -44,9 +44,9 @@ class Xcck_DefinitionEditAction extends Xcck_AbstractEditAction
 
     /**
      * hasPermission
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function hasPermission()
@@ -56,24 +56,24 @@ class Xcck_DefinitionEditAction extends Xcck_AbstractEditAction
 
     /**
      * prepare
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function prepare()
     {
         parent::prepare();
         $this->_setupCategoryManager('page');
-    
+
         return true;
     }
 
     /**
      * _setupActionForm
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     protected function _setupActionForm()
@@ -84,9 +84,9 @@ class Xcck_DefinitionEditAction extends Xcck_AbstractEditAction
 
     /**
      * _setHeaderScript
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     protected function _setHeaderScript()
@@ -118,9 +118,9 @@ $("#legacy_xoopsform_field_type").change(function(){
 
     /**
      * executeViewInput
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
@@ -139,9 +139,9 @@ $("#legacy_xoopsform_field_type").change(function(){
 
     /**
      * executeViewSuccess
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
@@ -151,9 +151,9 @@ $("#legacy_xoopsform_field_type").change(function(){
 
     /**
      * executeViewError
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
@@ -163,9 +163,9 @@ $("#legacy_xoopsform_field_type").change(function(){
 
     /**
      * executeViewCancel
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
@@ -173,5 +173,3 @@ $("#legacy_xoopsform_field_type").change(function(){
         $this->mRoot->mController->executeForward($this->_getNextUri('definition'));
     }
 }
-
-?>

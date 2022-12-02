@@ -64,4 +64,3 @@ class Xcck_PageDownloadAction extends Xcck_AbstractViewAction
     }
 }
 
-?>

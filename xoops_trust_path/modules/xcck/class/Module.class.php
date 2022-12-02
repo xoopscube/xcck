@@ -501,5 +501,3 @@ class Xcck_Module extends Legacy_ModuleAdapter
 		//$root->mController->executeForward(XOOPS_URL);
 	}
 }
-
-?>

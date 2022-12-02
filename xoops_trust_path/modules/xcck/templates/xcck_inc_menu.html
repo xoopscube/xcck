@@ -1,11 +1,46 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
 <{if $isSubtable===false && ($isPoster===true||$xoops_isadmin)}>
-<ul class="inline well well-small">
-  <li><i class="icon-caret-right"></i> <a href="<{xoops_cooluri dirname=$dirname}>"><{$xoops_modulename}> Top Page</a></li>
-  <li><i class="icon-caret-right"></i> <a href="<{xoops_cooluri dirname=$dirname dataname=page action=edit}>"><{$smarty.const._MD_XCCK_LANG_ADD_A_NEW_PAGE}></a></li>
-  <{if $xoops_isadmin}>
-  <li><i class="icon-caret-right"></i> <a href="<{xoops_cooluri dirname=$dirname query="show=all"}>"><{$smarty.const._MD_XCCK_LANG_SHOW_ALL}></a></li>
-  <li><i class="icon-caret-right"></i> <a href="<{xoops_cooluri dirname=$dirname dataname=definition}>"><{$smarty.const._MD_XCCK_LANG_DEFINITION_LIST}></a></li>
-  <li><i class="icon-caret-right"></i> <a href="<{xoops_cooluri dirname=$dirname dataname=definition action=edit}>"><{$smarty.const._MD_XCCK_LANG_ADD_A_NEW_DEFINITION}></a></li>
-  <{/if}>
-</ul>
+<details role="list">
+    <summary aria-haspopup="listbox" role="button" class="outline primary">
+        Action
+    </summary>
+    <ul role="listbox">
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname}>">
+                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
+                <{$xoops_modulename}> Top Page
+            </a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname query="show=all"}>">
+                <img class="svg menu" src="<{$xoops_url}>/images/icons/menu.svg" width="1em" height="1em" alt="menu">
+                <{$smarty.const._MD_XCCK_LANG_SHOW_ALL}></a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname action='search'}>">
+                <img class="svg search" src="<{$xoops_url}>/images/icons/search-adv.svg" width="1em" height="1em" alt="search">
+                <{$smarty.const._MD_XCCK_LANG_SEARCH}></a>
+        </li>
+
+        <{if $xoops_isadmin}>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname dataname=page action=edit}>">
+                <img class="svg new-page" src="<{$xoops_url}>/images/icons/file-new.svg" width="1em" height="1em" alt="new-page">
+                <{$smarty.const._MD_XCCK_LANG_ADD_A_NEW_PAGE}></a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname dataname=definition}>">
+                <img class="svg options" src="<{$xoops_url}>/images/icons/options.svg" width="1em" height="1em" alt="options">
+                <{$smarty.const._MD_XCCK_LANG_DEFINITION_LIST}></a>
+        </li>
+        <li>
+            <a href="<{xoops_cooluri dirname=$dirname dataname=definition action=edit}>">
+                <img class="svg block-plus" src="<{$xoops_url}>/images/icons/block-plus.svg" width="1em" height="1em" alt="block-plus">
+                <{$smarty.const._MD_XCCK_LANG_ADD_A_NEW_DEFINITION}></a>
+        </li>
+        <{/if}>
+    </ul>
+</details>
 <{/if}>

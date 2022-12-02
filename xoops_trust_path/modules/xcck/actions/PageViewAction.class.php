@@ -197,4 +197,3 @@ class Xcck_PageViewAction extends Xcck_AbstractViewAction
 
     }
 }
-

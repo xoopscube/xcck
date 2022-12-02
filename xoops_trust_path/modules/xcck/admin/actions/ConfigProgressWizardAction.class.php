@@ -78,5 +78,3 @@ class Xcck_Admin_ConfigProgressWizardAction extends Xcck_Admin_AbstractWizardAct
 		return array('none'=>'none', 'linear'=>'linear', 'rating'=>'rating');
 	}
 }
-
-?>

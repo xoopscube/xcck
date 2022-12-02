@@ -23,20 +23,20 @@ class Xcck_DefinitionObject extends Legacy_AbstractObject
 
     /**
      * __construct
-     * 
+     *
      * @param   string  $dirname
-     * 
+     *
      * @return  void
     **/
     public function __construct(/*** string ***/ $dirname)
     {
         $this->mDirname = $dirname;
-    
+
         $this->initVar('definition_id', XOBJ_DTYPE_INT, '', false);
         $this->initVar('field_name', XOBJ_DTYPE_STRING, '', false, 32);
-        $this->initVar('label', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('label', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('field_type', XOBJ_DTYPE_STRING, '', false, 16);
-        $this->initVar('validation', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('validation', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('required', XOBJ_DTYPE_BOOL, '', false);
         $this->initVar('weight', XOBJ_DTYPE_INT, 10, false);
         $this->initVar('show_list', XOBJ_DTYPE_BOOL, 1, false);
@@ -47,9 +47,9 @@ class Xcck_DefinitionObject extends Legacy_AbstractObject
 
     /**
      * getFieldType
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Xcck_iFieldType
     **/
     public function getFieldType()
@@ -62,9 +62,9 @@ class Xcck_DefinitionObject extends Legacy_AbstractObject
 
     /**
      * getOptions
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  mixed
     **/
     public function getOptions($key=null)
@@ -75,9 +75,9 @@ class Xcck_DefinitionObject extends Legacy_AbstractObject
 
     /**
      * getMinuteOption
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  int[]
     **/
     public function getMinuteOption()
@@ -101,9 +101,9 @@ class Xcck_DefinitionObject extends Legacy_AbstractObject
 
     /**
      * getDefault
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     public function getDefault()
@@ -113,9 +113,9 @@ class Xcck_DefinitionObject extends Legacy_AbstractObject
 
     /**
      * getShowYN
-     * 
+     *
      * @param   $key
-     * 
+     *
      * @return  string
     **/
     public function getShowYN($key)
@@ -189,7 +189,7 @@ class Xcck_DefinitionHandler extends Xcck_ObjectGenericHandler
 		        $this->_alterRevision($sql);
             }
         }
-    
+
         return parent::insert($obj, $force);
     }
 
@@ -201,7 +201,7 @@ class Xcck_DefinitionHandler extends Xcck_ObjectGenericHandler
         $sql = 'ALTER TABLE %s DROP `'. $obj->get('field_name') .'`';
         $this->_alterPage($sql);
         $this->_alterRevision($sql);
-    
+
         return parent::delete($obj, $force);
     }
 
@@ -268,5 +268,3 @@ class Xcck_DefinitionHandler extends Xcck_ObjectGenericHandler
         return false;
     }
 }
-
-?>

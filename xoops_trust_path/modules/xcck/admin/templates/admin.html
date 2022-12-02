@@ -1,10 +1,16 @@
-<ul class="adminMenu">
-<{foreach item=menu from=$adminMenu}>
-<li><a href="<{$menu.link}>"><{$menu.title}></a></li>
-<{/foreach}>
-</ul>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="adminnavi" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=Index"><{$legacy_module}></a></span>
+</div>
+
+<{include file="admin_menu.html"}>
+
 <div class="adminPage">
-<p class="description">
-<{$smarty.const._AD_XCCK_DESC_XCCK}>
-</p>
+    <div class="tips">
+        <p class="description">
+        <{$smarty.const._AD_XCCK_DESC_XCCK}>
+        </p>
+    </div>
 </div>

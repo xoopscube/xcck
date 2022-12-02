@@ -35,18 +35,19 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * __construct
-     * 
+     *
      * @param   string    $dirname
-     * 
+     *
      * @return  void
     **/
     public function __construct($dirname)
     {
+        parent::__construct(); // TODO gigamaster
         $this->mDirname = $dirname;
         $this->loadDefinition();
-    
+
         $this->initVar('page_id', XOBJ_DTYPE_INT, '', false);
-        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('category_id', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('maintable_id', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('p_id', XOBJ_DTYPE_INT, 0, false);
@@ -56,7 +57,7 @@ class Xcck_PageObject extends Legacy_AbstractObject
         $this->initVar('weight', XOBJ_DTYPE_INT, 50, false);
         $this->initVar('posttime', XOBJ_DTYPE_INT, time(), false);
         $this->initVar('updatetime', XOBJ_DTYPE_INT, time(), false);
-    
+
         foreach(array_keys($this->mDef) as $key){
             $this->mDef[$key]->mFieldType = $this->mDef[$key]->getFieldType();
             $this->mDef[$key]->mFieldType->setInitVar($this, $this->mDef[$key]->getShow('field_name'), $this->mDef[$key]->getDefault());
@@ -83,10 +84,10 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * showField
-     * 
+     *
      * @param   string  $key
      * @param   Enum  $option    DEPRECATED
-     * 
+     *
      * @return  mixed
     **/
     public function showField(/*** int ***/ $key, /*** Enum ***/ $option=Xcck_ActionType::VIEW)
@@ -96,9 +97,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * editField
-     * 
+     *
      * @param   string  $key
-     * 
+     *
      * @return  mixed
     **/
     public function editField(/*** int ***/ $key)
@@ -108,9 +109,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * getField
-     * 
+     *
      * @param   string  $key
-     * 
+     *
      * @return  mixed
     **/
     public function getField(/*** int ***/ $key)
@@ -120,10 +121,10 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * setField
-     * 
+     *
      * @param   string  $key
      * @param   mixed   $value
-     * 
+     *
      * @return  void
     **/
     public function setField(/*** string ***/ $key, /*** mixed ***/ $value)
@@ -151,9 +152,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * loadDefinition
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function loadDefinition()
@@ -168,9 +169,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * checkPublish
-     * 
+     *
      * @param   string  $dirname
-     * 
+     *
      * @return  bool
     **/
     public function checkPublish()
@@ -189,9 +190,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * isOpen
-     * 
+     *
      * @param   int  $time
-     * 
+     *
      * @return  bool
     **/
     public function isOpen($time=null)
@@ -213,9 +214,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * getShowStatus
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     public function getShowStatus()
@@ -234,9 +235,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * loadMaintable
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
      */
     public function loadMaintable()
@@ -246,19 +247,19 @@ class Xcck_PageObject extends Legacy_AbstractObject
             if(! $maintable){
                 return;
             }
-        
+
             $handler = Legacy_Utils::getModuleHandler('page', $maintable);
             $this->mMaintable = $handler->get($this->get('maintable_id'));
-        
+
             $this->_mIsMaintableLoaded = true;
         }
     }
 
     /**
      * loadPrevNext
-     * 
+     *
      * @param   int        $order
-     * 
+     *
      * @return  void
      */
     public function loadPrevNext(/*** Enum ***/ $order=null)
@@ -267,7 +268,7 @@ class Xcck_PageObject extends Legacy_AbstractObject
             $handler = Legacy_Utils::getModuleHandler('page', $this->getDirname());
             $order = isset($order) ? $order :Xcck_Utils::getModuleConfig($this->getDirname(), 'default_order');
             $orderList = Xcck_Utils::getOrderList($this->getDirname());
-        
+
             //previous object
             if($order>0){
                 $condA = '<=';
@@ -285,7 +286,7 @@ class Xcck_PageObject extends Legacy_AbstractObject
             $cri->setSort($orderList[abs($order)], $sort);
             $prevObj = $handler->getObjects($cri, 1, 0);
             $this->mPrev = count($prevObj)>0 ? array_shift($prevObj) : null;
-        
+
             //next object
             if($order>0){
                 $condA = '>=';
@@ -303,7 +304,7 @@ class Xcck_PageObject extends Legacy_AbstractObject
             $cri->setSort($orderList[abs($order)], $sort);
             $nextObj = $handler->getObjects($cri, 1, 0);
             $this->mNext = count($nextObj)>0 ? array_shift($nextObj) : null;
-        
+
             $this->_mIsPrevNextLoaded = true;
         }
     }
@@ -378,9 +379,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * get depth of the page path
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  int
     **/
     public function getDepth()
@@ -391,9 +392,9 @@ class Xcck_PageObject extends Legacy_AbstractObject
 
     /**
      * get number of image used in this table
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  int
     **/
     public function getImageNumber()
@@ -503,7 +504,7 @@ class Xcck_PageHandler extends Xcck_ObjectGenericHandler
     {
         $result = array();
         XCube_DelegateUtils::call('Legacy_Map.DeletePlaces', new XCube_Ref($result), $obj->getDirname(), $obj->getDataname(), $obj->get('page_id'));
-    
+
         return $result;
     }
 
@@ -518,9 +519,9 @@ class Xcck_PageHandler extends Xcck_ObjectGenericHandler
                 return XCCK_FRAME_VIEW_ERROR;
             }
         }
-    
+
         // $this->_deleteRevision($obj);
-    
+
         return XCCK_FRAME_VIEW_SUCCESS;
     }
 
@@ -551,7 +552,7 @@ class Xcck_PageHandler extends Xcck_ObjectGenericHandler
     /**
      * count page in given category
      * @param   int     $catId
-     * 
+     *
      * @return  int
     **/
     public function countPageByCategory(/*** int ***/ $catId)
@@ -564,7 +565,7 @@ class Xcck_PageHandler extends Xcck_ObjectGenericHandler
      * getTree
      * get Xcck_PageObject array in maintable-subtable tree form
      * @param   int     $p_id
-     * 
+     *
      * @return  Xcck_PageObject[]
     **/
     public function getTree(/*** int ***/ $p_id)
@@ -582,10 +583,10 @@ class Xcck_PageHandler extends Xcck_ObjectGenericHandler
 
     /**
      * _getTree
-     * 
+     *
      * @param   Xcck_PageObject[]   $tree
      * @param   int     $pid
-     * 
+     *
      * @return  Xcck_PageObject[]
     **/
     protected function _getTree(/*** Xcck_PageObject[] ***/ $tree, /*** int ***/ $p_id)
@@ -647,5 +648,3 @@ class Xcck_PageHandler extends Xcck_ObjectGenericHandler
     }
 
 }
-
-?>

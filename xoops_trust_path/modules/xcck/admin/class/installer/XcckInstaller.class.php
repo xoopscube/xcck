@@ -289,5 +289,3 @@ class Xcck_Installer
         return true;
     }
 }
-
-?>

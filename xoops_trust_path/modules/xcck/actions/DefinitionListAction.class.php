@@ -104,7 +104,8 @@ class Xcck_DefinitionListAction extends Xcck_AbstractListAction
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 		$render->setAttribute('isSubtable', $this->_isSubtable());
+
+        // TODO breadcrumbs
+        //$render->setAttribute('xoops_breadcrumbs', $this->_getBreadcrumb());
 	}
 }
-
-?>
