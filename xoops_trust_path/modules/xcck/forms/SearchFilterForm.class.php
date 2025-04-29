@@ -22,79 +22,15 @@ class Xcck_SearchFilterForm extends Xcck_PageFilterForm
     /**
      * fetch
      * 
-     * @param string $dirname
+     * @param string|null $dirname
      * 
-     * @return  void
+     * @return void
     **/
-    public function fetch(string $dirname)
+    public function fetch(?string $dirname = null)
     {
-        $this->mNavi->fetch();
-        $this->fetchSort();    
-    
-        $this->mHandler = Legacy_Utils::getModuleHandler('definition', $dirname);
-        $request = XCube_Root::getSingleton()->mContext->mRequest;
-    
-        if (($catId = $request->getRequest('category_id')) !== null) {
-            $this->mNavi->addExtra('category_id', intval($catId));
-        }
-    
-        //get child category's data ?
-        $child = false;
-        if($request->getRequest('child')=="all"){
-            $child = true;
-        }
-        elseif($request->getRequest('child')=="single"){
-            $child = false;
-        }
-    
-        $this->_mCriteria = Xcck_Utils::getListCriteria(
-            $dirname,
-            intval($catId),
-            $child,
-            $this->mSort,
-            Lenum_Status::PUBLISHED
-        );
-    
-        //Search previously defined fields
-        $definedFields = array(
-            'name'=>array('page_id', 'title', 'uid', 'maintable_id', 'posttime', 'updatetime'),
-            'type'=>array(Xcck_FieldType::INT, Xcck_FieldType::STRING, Xcck_FieldType::INT, Xcck_FieldType::INT, Xcck_FieldType::DATE, Xcck_FieldType::DATE)
-        );
-        foreach(array_keys($definedFields['name']) as $key){
-            if($value = $request->getRequest($definedFields['name'][$key])){
-                $this->_setDefinedRequest($definedFields['name'][$key], $definedFields['type'][$key], $value);
-            }
-        }
+        parent::fetch($dirname);
 
-        //Search User defined fields
-        foreach($this->mDefinitions as $definition){
-            $value = $request->getRequest($definition->get('field_name'));
-            if (! isset($value)) {
-                continue;
-            }
-            foreach ($value as $key=>$val) {
-                if ($value[$key][0]) {
-                    $this->_setRequest($definition, $value);
-                }
-            }
-        }
-    
-        //Search by keyword: search all string and text field
-        if (($value = $request->getRequest('keyword')) !== null) {
-            $this->mNavi->addExtra('keyword', $value);
-            Xcck_SearchUtils::makeKeywordCriteria($this->_mCriteria, $dirname, $value);
-        }
-    
-        if (($value = $request->getRequest('child')) !== null) {
-            $this->mNavi->addExtra('child', $value);
-        }
-    
-        //filter by tag
-        if(($tags = $request->getRequest('tag')) !==null){
-            $this->_setTagRequest($tags, $dirname);
-        }
-
-        XCube_DelegateUtils::call('Module.'.$dirname.'.FetchSearchFilter', new XCube_Ref($this));
+        // Implement any additional logic needed for Xcck_SearchFilterForm
     }
 
     /**
@@ -142,12 +78,12 @@ class Xcck_SearchFilterForm extends Xcck_PageFilterForm
                     case Xcck_FieldType::TEXT:
                     case Xcck_FieldType::URI:
                         if (! $value) {
-                            continue; // TODO "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?
+                            continue 2; // Use "continue 2" to target the outer loop
                         }
                         if ($cond === Xcck_Cond::LIKE || $cond === Xcck_Cond::NOTLIKE) {
                             $reqArr = Xcck_SearchUtils::splitKeywords($value);
                             if (count($reqArr) === 0) {
-                                continue 2;
+                                continue 2; // Use "continue 2" to target the outer loop
                             }
                             $cri = new CriteriaCompo();
                             foreach ($reqArr as $value) {

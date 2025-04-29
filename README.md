@@ -9,12 +9,12 @@
 
 MODULE | xCCK
 ------------ | -------------
-Description | xCCK is a No-code low-code module to easily create fields and pages to manage data.
+Description | xCCK is a simple yet powerful and versatile no-code database module.
 Render Engine | Smarty v2 and XCube Layout
-Version | 1.23.1
+Version | 2.50.0
 Update | @gigmaster Nuno Luciano (XCL7)
 Author | Original by @kilica (core developer)
-Copyright | 2011-2022 Authors
+Copyright | 2011-2025 Authors
 License | GPL
 
 
@@ -22,9 +22,9 @@ License | GPL
 
 
 
-          Apache, Nginx, etc. PHP 7.2.x
-          MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
-          XCL version 2.3.+
+          Apache, Nginx, etc. PHP 8.2.x
+          MySQL 8.x, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.5.+
 
 
 
@@ -37,26 +37,49 @@ License | GPL
 ### xCCK : XCube Contents Creation Kit
 
 
-xCCK is an acronym for XOOPS Cube Contents Creation Kit, a type of general-purpose database module.   
-It is a new generation of universal module, a No-code development that can also be regarded as a form    
-of visual programming that fully utilizes the functions of XOOPS Cube Web Platform.   
-You can freely create, manage and design as many items as you like, link parent-child pages,    
-sub-table settings, categories and other common modules.
+xCCK, an acronym for XOOPSCube Contents Creation Kit, is a simple yet powerful and versatile no-code database module. 
+A Contents Creation Kit (CCK) empowers users to create and manage various content types without requiring programming expertise.
+xCCK enables the flexible creation of web applications for storing and displaying data,
+suitable for content, news, product catalogs, image albums, blogs, link lists, and more.
 
 **Module Requirements**
 
 - XCube Web Application Platform   
-- Distribution XCL2.3.+ recommended   
+- Distribution XCL2.5.+ recommended   
 - Lecat module (for category management)
 - Leprogress module (for progress management)
-- PHP7 and MySQL5.6
+- PHP  8.2 and MySQL 8.x
 
 **Author**
 @kilica (core developer)
+@gigamaster maintainer
+
+**Installation**
+- Download the latest release from the GitHub repository.
+- Extract the downloaded archive to the root directory of your installation.
+- Access the administration panel and navigate to the "Modules" section.
+- Click on the "Install" button next to the xCCK module.
+- Follow the on-screen instructions to complete the installation process.
+
+**Usage**
+- After installation, the xCCK module will be available in the XCube administration panel.
+- To create a new content type, click on the "Add a new page" button.
+- Define the fields and properties of the content type, such as field name, field type, and validation rules.
+- Save the content type to apply the changes.
+- View the created content items in the xCCK module or by using the appropriate module tags.
+
+**Customization**
+- The xCCK module provides various customization options to tailor the content to your needs.
+- You can modify the field types, validation rules, and templates to suit your requirements.
+- Refer to the module documentation for detailed instructions on customization.
+
+**Contribution**
+- Contributions to the xCCK module are welcome!
+- If you find any bugs or have suggestions for improvements, please open an issue on the GitHub repository.
+
 
 **Features**   
-Site administrator can freely define items/fields
-The administrator can easily create fields and pages to manage data. 
+Webbmasters can easily create new fields and pages to manage data. 
 Select the field type from :
 
 - string (one line of text), 

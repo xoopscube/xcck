@@ -18,6 +18,7 @@ require_once XCCK_TRUST_PATH . '/class/AbstractEditAction.class.php';
 class Xcck_SubtableEditAction extends Xcck_AbstractEditAction
 {
     public $mField = array();
+    public $mDefinitions = array(); // Add this line to define the property
 
     /**
      * _getId
@@ -268,7 +269,7 @@ class Xcck_SubtableEditAction extends Xcck_AbstractEditAction
         $render->setAttribute('dataname', $dataname);
         $render->setAttribute('fields',$this->mDefinitions);
 
-        $render->setAttribute('usePreview', ($this->mRoot->mContext->mModuleConfig['preview']) ? true : false);
+        $render->setAttribute('usePreview', $this->mRoot->mContext->mModuleConfig['preview'] ?? false);
 
         $render->setAttribute('accessController', $this->mCategoryManager);
         $render->setAttribute('isSubtable', $this->_isSubtable());

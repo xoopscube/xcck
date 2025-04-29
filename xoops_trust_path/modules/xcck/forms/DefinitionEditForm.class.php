@@ -38,9 +38,12 @@ class Xcck_DefinitionEditForm extends XCube_ActionForm
      *
      * @return  void
     **/
-    public function prepare($dirname)
+    public function prepare()
     {
-        $this->_mDirname = $dirname;
+
+// FIX - Fatal error: Declaration of Xcck_DefinitionEditForm::prepare($dirname) must be compatible with XCube_ActionForm::prepare()
+// public function prepare($dirname)
+// $this->_mDirname = $dirname;
         //
         // Set form properties
         //

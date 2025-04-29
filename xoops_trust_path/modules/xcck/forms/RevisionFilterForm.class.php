@@ -24,11 +24,14 @@ class Xcck_RevisionFilterForm extends Xcck_PageFilterForm
      * 
      * @return  void
     **/
-    public function fetch(string $dirname)
+    public function fetch()
     {
         parent::fetch();
         $request = XCube_Root::getSingleton()->mContext->mRequest;
-	
+    
+        // Assuming $dirname is needed, retrieve it from the request or another source
+        $dirname = $request->getRequest('dirname');
+    
         if (($catId = $request->getRequest('category_id')) !== null) {
             $this->mNavi->addExtra('category_id', intval($catId));
         }

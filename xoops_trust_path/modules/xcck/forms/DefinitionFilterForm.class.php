@@ -63,9 +63,9 @@ class Xcck_DefinitionFilterForm extends Xcck_AbstractFilterForm
      * 
      * @return  void
     **/
-    public function fetch()
+    public function fetch(?string $dirname = null)
     {
-        parent::fetch();
+        parent::fetch($dirname);
     
         $root = XCube_Root::getSingleton();
     

@@ -45,12 +45,14 @@ class Xcck_ObjectGenericHandler extends Legacy_AbstractClientObjectHandler
      *
      * @return  void
     **/
-    public function __construct(/*** XoopsDatabase ***/ &$db,/*** string ***/ $dirname)
+    public function __construct(/*** XoopsDatabase ***/ &$db, /*** string ***/ $dirname = null)
     {
-    	$this->mDirname = $dirname;
-        $this->mTable = strtr($this->mTable,array('{dirname}' => $this->getDirname()));
-        // TODO Fix gigamaster
-        // parent::XoopsObjectGenericHandler($db);
+        if ($dirname === null) {
+            // Determine the directory name dynamically, e.g., from the file path
+            $dirname = basename(__DIR__);
+        }
+        $this->mDirname = $dirname;
+        $this->mTable = strtr($this->mTable, array('{dirname}' => $this->getDirname()));
         parent::__construct($db);
     }
 
@@ -91,7 +93,8 @@ class Xcck_ObjectGenericHandler extends Legacy_AbstractClientObjectHandler
 		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
 			$where = $this->_makeCriteria4sql($criteria);
 
-			if (trim($where)) {
+			// Ensure $where is a string before calling trim()
+			if (is_string($where) && trim($where)) {
 				$sql .= " WHERE " . $where;
 			}
 

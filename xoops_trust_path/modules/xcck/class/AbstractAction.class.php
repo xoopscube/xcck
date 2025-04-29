@@ -22,6 +22,12 @@ abstract class Xcck_AbstractAction
 
     public /*** Xcck_AssetManager ***/ $mAsset = null;
 
+    // Declare the mCategoryManager property
+    protected $mCategoryManager;
+
+    // Declare the mObject property
+    protected $mObject;
+
     /**
      * __construct
      * 

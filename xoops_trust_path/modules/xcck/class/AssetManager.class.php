@@ -76,7 +76,7 @@ class Xcck_AssetManager
     
         $instance = null;
         
-        $methodName = 'create' . ucfirst($name) . ucfirst($mode) . ucfirst($type);
+        $methodName = 'create' . ucfirst($name ?? '') . ucfirst($mode ?? '') . ucfirst($type ?? '');
         if(method_exists($this,$methodName))
         {
             $instance =& $this->$methodName();

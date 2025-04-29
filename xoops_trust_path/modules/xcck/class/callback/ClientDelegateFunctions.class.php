@@ -130,30 +130,34 @@ class Xcck_TagClientDelegate implements Legacy_iTagClientDelegate
 	 * @return  void
 	 */ 
 	public static function getClientData(/*** mixed ***/ &$list, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int[] ***/ $idList)
-	{
-		//default
-		$limit = 5;
-		$start =0;
-	
-		$handler = Legacy_Utils::getModuleHandler($dataname, $dirname);
-		if(! $handler){
-			return;
+		{
+			//default
+			$limit = 5;
+			$start = 0;
+		
+			$handler = Legacy_Utils::getModuleHandler($dataname, $dirname);
+			if (! $handler) {
+				return;
+			}
+		
+			//setup client module info
+			$cri = Xcck_Utils::getListCriteria($dirname);
+			if ($cri === null) {
+				// Initialize $cri if it's null
+				$cri = new CriteriaCompo();
+			}
+			$cri->add(new Criteria('page_id', $idList, 'IN'));
+			$objs = $handler->getObjects($cri, $limit, $start);
+			if (count($objs) > 0) {
+				$list['dirname'][] = $dirname;
+				$list['dataname'][] = $dataname;
+				$list['data'][] = $objs;
+				$handler = xoops_gethandler('module');
+				$module = $handler->getByDirname($dirname);
+				$list['title'][] = $module->name();
+				$list['template_name'][] = 'db:' . $dirname . '_page_inc.html';
+			}
 		}
-	
-		//setup client module info
-		$cri = Xcck_Utils::getListCriteria($dirname);
-		$cri->add(new Criteria('page_id', $idList, 'IN'));
-		$objs = $handler->getObjects($cri, $limit, $start);
-		if(count($objs)>0){
-			$list['dirname'][] = $dirname;
-			$list['dataname'][] = $dataname;
-			$list['data'][] = $objs;
-			$handler = xoops_gethandler('module');
-			$module = $handler->getByDirname($dirname);
-			$list['title'][] = $module->name();
-			$list['template_name'][] = 'db:'.$dirname . '_page_inc.html';
-		}
-	}
 }
 
 

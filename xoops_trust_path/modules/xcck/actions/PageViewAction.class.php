@@ -167,10 +167,13 @@ class Xcck_PageViewAction extends Xcck_AbstractViewAction
                 $pageArr[$dirname] = Legacy_Utils::getModuleHandler('page', $dirname)->getObjects($subtableCri);
             }
         }
-        if(count($subtableArr)>0){
+        if (count($subtableArr) > 0) {
             $render->setAttribute('subtableArr', $subtableArr);
             $render->setAttribute('definitionArr', $definitionArr);
             $render->setAttribute('pageArr', $pageArr);
+        } else {
+            // Ensure subtableArr is initialized as an empty array if no items are present
+            $render->setAttribute('subtableArr', []);
         }
 	
     	$render->setAttribute('xoops_breadcrumbs', $this->_getBreadcrumb($this->mObject));

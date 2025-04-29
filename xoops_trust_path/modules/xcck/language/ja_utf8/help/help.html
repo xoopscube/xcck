@@ -1,4 +1,532 @@
-<h4>Input the title here</h4>
-<h5>Summary</h5>
-<p>Even if the help is poor, some information shall help users. Try writing. Take it easy.</p>
-<h5><a href="<{"delegate.html"|helpurl}>">Delegate List</a></h5>
+<div data-layout="row sm-column">
+
+    <div data-self="size-xxsmall">
+        <nav id="help-menu">
+            <ul data-layout="rows">
+                <li><a href="#help-xcck-overview" class="button">Overview</a>
+                <li><a href="#help-xcck-start" class="button">Get started</a>
+                <li><a href="#help-xcck-definition" class="button">Definition</a>
+                <li><a href="#help-xcck-page" class="button">Page</a>
+                <li><a href="#help-xcck-subtable" class="button">Subtable</a>
+                <li><a href="#help-xcck-revision" class="button">Revision</a>
+                <li><a href="#help-xcck-blocks" class="button">Blocks</a>
+                <li><a href="#help-xcck-preferences" class="button">Preferences</a>
+                <li><a href="#help-xcck-delegate" class="button">Delegate</a>
+            </ul>
+        </nav>
+    </div>
+
+<article id="help-module">
+
+    <section id="help-xcck-overview">
+
+        <h3>Overview</h3>
+
+        <p>xCCK, an acronym for XOOPSCube Contents Creation Kit, is a simple yet powerful and versatile no-code database module. 
+            A Contents Creation Kit (CCK) empowers users to create and manage various content types without requiring programming expertise.
+        </p>
+        <p>
+            This module fully leverages XOOPSCube's capabilities by integrating with common module groups 
+            nd features such as parent-child pages, sub-table configurations, categories, tags, images, and workflows. 
+            This integration allows for highly customizable functionalities and design.
+        </p>
+        <p>
+            xCCK enables the flexible creation of basic web applications for storing and displaying data,
+            suitable for static content, news, product catalogs, image albums, blogs, link lists, and more.
+        </p>
+        <p>
+            xCCK was initially distributed at OSC2011 Nagoya.<br>
+            The information above is based on the xCCK introduction presentation held on September 16, 2011, at the
+            Ebisu co-working space.</p>
+        </p>
+
+    </section>
+
+<hr>
+
+    <section id="help-xcck-start">
+
+        <h3>Get started</h3>
+
+        <p>To get started with xCCK, follow these steps:</p>
+
+        <h5>1. Installation</h5>
+        <p>Download the xCCK module from the XOOPSCube repository.</p>
+        <p>Upload the module to your installation directory.</p>
+        <p>Install the module through the administration interface.</p>
+
+        <p>Administrators can add data to pages. Choose field types like string, text, int, date, category, select,
+            or checkbox.</p>
+
+        <h5>Parent Page - Child Page Settings</h5>
+
+        <p>Create child pages and organize them into a tree structure.</p>
+
+        <h5>Set subpage for page</h5>
+
+        <p>Link multiple xCCKs to set subpages. Control product size options with subpages.</p>
+
+        <h5>Category or group-based permission settings</h5>
+
+        <p>Use Legacy_Category and Legacy_Group modules for detailed permissions.</p>
+
+        <h5>Classification by tags</h5>
+
+        <p>Classify pages by tags using the Legacy_Tag module.</p>
+
+        <h5>Image attachment</h5>
+
+        <p>Attach images to pages with the Legacy_Image module.</p>
+
+        <h5>Workflow</h5>
+
+        <p>Apply approval functions for page publication with Legacy_Workflow.</p>
+
+        <h5>Summary</h5>
+        <ul>
+            <li>Install
+            <li>Set the item
+            <li>Establish parent-child page relationships
+            <li>Create a subtable
+            <li>Customize template
+            <li>Use category module for access control
+            <li>Use group module for access control
+            <li>Manage tags with the tag module
+            <li>Attach images with le_image
+            <li>Add workflow with le_progress
+            <li>Set up search function
+            <li>Set up comment function
+            <li>Set up syndication function
+            <li>Set up RSS function
+            <li>Set up sitemap function
+            <li>Copy xCCK with inherited items and settings
+        </ul>
+
+        <h5>Practical Implementation Examples</h5>
+        
+        <p>xCCK can be used as a news module. It can also be implemented as a product module.
+        Furthermore, xCCK can serve as an inquiry module.
+        The module also includes the functionality to add input value validation.</p>
+
+        <h5>Customization Tips</h5>
+        <p>Duplicate the frontend to create a new instance, a module inheriting xCCK
+        <p>Use the new instance as sub-table to extend you initial main parent module.
+        <p>Extend with lecat, legroup, leimg, and letag
+
+    </section>
+
+<hr>
+
+
+    <section id="help-xcck-definition">
+
+        <h3>Definitions</h3>
+
+        <p>The definition class in the xCCK module is responsible for handling the editing of definitions within the
+            module's graphical user interface (GUI). Here's a breakdown of what this class allows users to do:</p>
+
+        <h5>1. Handler Retrieval</h5>
+        <p>The class provides a method to retrieve the handler for the definition objects, which is essential for
+            performing operations on these objects.
+        </p>
+
+        <h5>2. Page Title Management</h5>
+        <p>It includes functionality to get the page title based on the field name of the object being edited, which
+            helps in displaying the correct title in the GUI.</p>
+
+        <h5>3. Permission Checking</h5>
+        <p>The class checks if the current user has the necessary permissions to edit the definition. This ensures
+            that only authorized users can make changes.</p>
+        <h5>4. Preparation</h5>
+        <p>It prepares the environment for editing by setting up necessary components like the category manager.</p>
+        <h5>5. Action Form Setup</h5>
+        <p>The class sets up the action form used in the editing process, ensuring that the form is correctly
+            initialized and ready for user input.</p>
+        <h5>6. Header Script Management</h5>
+        <p> It manages JavaScript that controls the behavior of the form fields in the GUI, such as enabling or
+            disabling fields based on user interactions.</p>
+        <h5>7. Duplicate Check</h5>
+        <p>Before saving changes, the class checks for duplicate definitions to prevent conflicts and ensure data
+            integrity.</p>
+        <h5>8. View Execution</h5>
+        <p>The class provides methods to handle different outcomes of the editing process, such as successful edits,
+            errors, or cancellations.
+            These methods determine what the user sees next in the GUI.</p>
+
+        <p>The Definition feature facilitates the editing of definitions in the xCCK module,
+            providing a structured and secure way for users to modify content definitions through the GUI.</p>
+
+    </section>
+
+
+<hr>
+
+    <section id="help-xcck-page">
+
+        <h3>Page</h3>
+
+        <p>The Page feature in the xCCK module is designed to facilitate the editing of pages
+            within the module's graphical user interface (GUI). Here's what this class allows users to do:</p>
+
+        <h5> 1. Page Identification</h5>
+        <p>It retrieves the ID of the page being edited, accommodating single post configurations.
+
+        </p>
+
+        <h5>2. Category Management</h5>
+        <p>The class determines the category ID associated with the page, which is crucial for organizing content
+            and managing permissions.
+
+        </p>
+
+        <h5>3. Parent-Child Relationships</h5>
+        <p>It identifies the parent ID of the page, enabling hierarchical structuring of pages.
+
+        </p>
+
+        <h5>4. Handler Setup</h5>
+        <p>The class sets up handlers for page objects, allowing for operations like creation and retrieval of page
+            data.
+        </p>
+
+        <h5>5. Title Management</h5>
+        <p>It retrieves the title of the page for display purposes in the GUI.
+        </p>
+
+        <h5>6. Permission Checking</h5>
+        <p>The class checks if the user has the necessary permissions to edit the page, ensuring that only
+            authorized users can make changes.</p>
+
+        <h5>7. Action Form Setup</h5>
+        <p>It sets up the action form used in the editing process, preparing it for user input.</p>
+
+        <h5>8. Object Preparation</h5>
+        <p>The class prepares the page object for editing, including setting default statuses and loading paths and tags.
+        </p>
+
+        <h5>9. Attribute Setup</h5>
+        <p>It configures various attributes for rendering, such as category trees, field definitions, and image setups.
+        </p>
+
+        <h5>10. Preview and Execution</h5>
+        <p>The class handles previewing changes and executing updates, including saving workflows and updating files.
+        </p>
+
+        <h5>11. Header Script Management</h5>
+        <p>It manages JavaScript for the GUI, such as date picker scripts and map editing scripts.
+        </p>
+
+        <p>The Page feature provides a comprehensive framework for editing pages in the xCCK module, 
+            offering features that support content management, permission control, and user interaction within the GUI.
+        </p>
+
+    </section>
+
+<hr>
+
+
+    <section id="help-xcck-subtable">
+
+        <h3>Subtable</h3>
+
+        <p>The subtable functionality in the xCCK module is designed to manage the editing of subtable
+            entries within the module's graphical user interface (GUI). Here's what this allows you to do:
+        </p>
+
+        <h5>1. Subtable Entry Identification</h5>
+        <p>It retrieves the ID of the subtable entry being edited, ensuring that the correct entry is accessed for
+            modifications.
+        </p>
+
+        <h5>2. Main Table Association</h5>
+        <p>The class determines the main table ID associated with the subtable entry, which is crucial for
+            maintaining relationships between main and subtable entries.
+        </p>
+
+        <h5>3. Category Management</h5>
+        <p>It identifies the category ID for the subtable entry, which helps in organizing content and managing
+            permissions.
+        </p>
+
+        <h5>4. Parent-Child Relationships</h5>
+        <p>The class retrieves the parent ID of the subtable entry, allowing for hierarchical structuring of
+            entries.
+        </p>
+
+        <h5>5. Handler Setup</h5>
+        <p>It sets up handlers for subtable objects, enabling operations like creation and retrieval of subtable
+            data.
+        </p>
+
+        <h5>6. Title Management</h5>
+        <p>The class retrieves the title of the subtable entry for display purposes in the GUI.
+        </p>
+
+        <h5>7. Permission Checking</h5>
+        <p>It checks if the user has the necessary permissions to edit the subtable entry, ensuring that only
+            authorized users can make changes.
+        </p>
+
+        <h5>8. Action Form Setup</h5>
+        <p>The class sets up the action form used in the editing process, preparing it for user input.
+        </p>
+        
+        <h5>9. Object Preparation</h5>
+        <p>It prepares the subtable object for editing, including setting default statuses and loading related data.
+        </p>
+
+        <h5>10. Attribute Setup</h5>
+        <p>The class configures various attributes for rendering, such as category trees, field definitions, and
+            image setups.
+        </p>
+
+        <h5>11. Preview and Execution</h5>
+        <p>It handles previewing changes and executing updates, including saving workflows and updating files.
+        </p>
+
+        <h5>12. Header Script Management</h5>
+        <p>The class manages JavaScript for the GUI, such as date picker scripts and map editing scripts.
+        </p>
+
+        <p>Subtable provides a comprehensive framework for editing subtable
+            entries in the xCCK module,
+            offering features that support content management, permission control, and user interaction within the
+            GUI.</p>
+        
+    </section>
+
+
+<hr>
+
+
+    <section id="help-xcck-revision">
+        <h3>Revision</h3>
+
+        <p>The Revision feature in  xCCK module is designed to manage the editing of revisions
+            within the module's graphical user interface (GUI):
+        </p>
+
+        <h5>1. Revision Identification</h5>
+        <p>It retrieves the ID of the revision being edited, ensuring that the correct revision is accessed for
+            modifications.
+        </p>
+
+        <h5>2. Main Table Association</h5>
+        <p>The class determines the main table ID associated with the revision, which is crucial for maintaining
+            relationships between main and revision entries.
+        </p>
+
+        <h5>3. Category Management</h5>
+        <p>It identifies the category ID for the revision, which helps in organizing content and managing
+            permissions.
+        </p>
+
+        <h5>4. Parent-Child Relationships</h5>
+        <p>The class retrieves the parent ID of the revision, allowing for hierarchical structuring of revisions.
+        </p>
+
+        <h5>5. Handler Setup</h5>
+        <p>It sets up handlers for revision objects, enabling operations like creation and retrieval of revision
+            data.
+        </p>
+
+        <h5>6. Title Management</h5>
+        <p>The class retrieves the title of the revision for display purposes in the GUI.
+        </p>
+
+        <h5>7. Permission Checking</h5>
+        <p>It checks if the user has the necessary permissions to edit the revision, ensuring that only authorized
+            users can make changes.
+        </p>
+
+        <h5>8. Action Form Setup</h5>
+        <p>The class sets up the action form used in the editing process, preparing it for user input.
+        </p>
+
+        <h5>9. Object Preparation</h5>
+        <p>It prepares the revision object for editing, including setting default statuses and loading related data.
+        </p>
+
+        <h5>10. Attribute Setup</h5>
+        <p>The class configures various attributes for rendering, such as category trees, field definitions, and
+            image setups.
+        </p>
+
+        <h5>11. Preview and Execution</h5>
+        <p>It handles previewing changes and executing updates, including saving workflows and updating files.
+        </p>
+
+        <h5>12. Header Script Management</h5>
+        <p>The class manages JavaScript for the GUI, such as date picker scripts and map editing scripts.
+        </p>
+
+        <h5>13. Revision Viewing</h5>
+        <p>The class allows users to view revisions of a specific item, providing a historical record of changes made to
+            the item.
+        </p>
+
+        <h5>14. Revision Filtering</h5>
+        <p>The class allows users to filter revisions based on various criteria, such as date range, author, or
+            content changes.
+        </p>
+
+        <h5>15. Revision Sorting</h5>
+        <p>The class allows users to sort revisions based on different criteria, such as date, author, or content
+            changes.
+        </p>
+
+        <h5>16. Revision Pagination</h5>
+        <p>The class provides pagination functionality for displaying revisions in manageable chunks, allowing users to
+            navigate through multiple pages of revisions.
+        </p>
+
+        <h5>17. Revision Search</h5>
+        <p>The class allows users to search for specific revisions based on keywords or criteria.
+        </p>
+
+        <h5>18. Revision Export</h5>
+        <p>The class provides functionality for exporting revision data in various formats, such as CSV or PDF.
+        </p>
+
+        <h5>19. Revision Import</h5>
+        <p>The class provides functionality for importing revision data from external sources, such as CSV or PDF files.
+        </p>
+
+        <h5>20. Revision Comparison</h5>
+        <p>The class allows users to compare revisions side by side, highlighting differences and providing a visual
+            representation of changes.
+        </p>
+
+        <h5>21. Revision History</h5>
+        <p>The class provides a history of revisions for a specific item, showing the changes made to the item over
+            time.
+        </p>
+
+        <h5>22. Revision Approval</h5>
+        <p>The class allows users to approve or reject revisions, controlling the visibility and publication status of
+            the item.
+        </p>
+
+        <h5>23. Revision Comments</h5>
+        <p>The class provides a commenting system for revisions, allowing users to provide feedback or discuss changes
+            made to the item.
+        </p>
+
+        <h5>24. Revision Notifications</h5>
+        <p>The class sends notifications to users when a new revision is created or when a revision is approved or
+            rejected.
+        </p>
+
+        <h5>25. Revision Permissions</h5>
+        <p>The class controls access to revision data based on user permissions, ensuring that only authorized users can
+            view or modify revision data.
+        </p>
+
+        <h5>26. Revision Statistics</h5>
+        <p>The class provides statistics and analytics related to revision data, such as the number of revisions created,
+            the average time between revisions, and the most active users.
+        </p>
+
+        <h5>27. Revision Workflows</h5>
+        <p>The class integrates with workflow management systems, allowing users to track the status of revisions and
+            apply workflows to them.
+        </p>
+
+        <h5>28. Revision Versioning</h5>
+        <p>The class enables versioning of revisions, allowing users to track changes made to the item over time.
+        </p>
+
+        <h5>29. Revision Collaboration</h5>
+        <p>The class enables collaboration among users, allowing multiple users to work on the same item simultaneously.
+        </p>
+
+        <p>Revision provides a comprehensive framework for editing revisions in the
+            xCCK module, offering features that support content management, permission control, and user interaction
+            within the GUI. This allows you to view and interact with revision data in a structured and categorized
+                 manner within the application's GUI. It provides functionalities for filtering, 
+                organizing, and displaying revision information based on the application's configuration settings.</p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-xcck-blocks">
+        <h3>Modules Blocks</h3>
+        <p>Blocks contain a specific data from the module database that be be displayed in different placements of
+            the theme rendered and different pages</p>
+        <p>Another nice feature you can add blocks with content and navigate with tags provided by the module.
+            The module creates a block that you can enable to show on the pages of modules you select.</p>
+    </section>
+
+
+<hr>
+
+
+    <section id="help-xcck-preferences">
+        <h3>Preferences</h3>
+        <p>The module provides simple settings and extendale options to use specific modules.</p>
+        <p>By using these modules together with xCCK, you can greatly extend the functionality of xCCK.
+        <ul>
+            <li>lecat (category)
+            <li>legroup (group)
+            <li>leimg (image management)
+            <li>letag (tag management)
+            <li>lefeed (Manage new arrivals)
+            <li>leprogress (workflow management)
+            <li>*lecat is in XCL2.2 extras/extra_modules.
+    </section>
+
+
+    <section id="help-xcck-delegate">
+        
+        <h3>Module actions and evvents notifications</h3>
+
+        <h3>Delegate List</h3>
+
+        <h5>Module.xcck.Global.Event.GetAssetManager</h5>
+        <dl>
+            <dt>Xcck_AssetManager</dt>
+            <dd>&$obj</dd>
+            <dt>string</dt>
+            <dd>$dirname</dd>
+        </dl>
+
+        <h5>Module.xcck.Global.Event.Exception.ActionNotFound</h5>
+        <dl>
+            <dt>string</dt>
+            <dd>$dirname</dd>
+        </dl>
+
+        <h5>Module.{dirname}.Event.Exception.ActionNotFound</h5>
+        <dl>
+            <dt>void</dt>
+        </dl>
+
+        <h5>Module.xcck.Global.Event.Exception.Preparation</h5>
+        <dl>
+            <dt>string</dt>
+            <dd>$dirname</dd>
+        </dl>
+
+        <h5>Module.{dirname}.Event.Exception.Preparation</h5>
+        <dl>
+            <dt>void</dt>
+        </dl>
+
+        <h5>Module.xcck.Global.Event.Exception.Permission</h5>
+        <dl>
+            <dt>string</dt>
+            <dd>$dirname</dd>
+        </dl>
+
+        <h5>Module.{dirname}.Event.Exception.Permission</h5>
+        <dl>
+            <dt>void</dt>
+        </dl>
+    </section>
+
+    </article>
+
+</div>

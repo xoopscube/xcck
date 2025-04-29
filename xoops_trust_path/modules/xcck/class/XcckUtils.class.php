@@ -150,8 +150,12 @@ class Xcck_Utils
             $idList[$dirname] = self::getPermittedIdList($dirname);
         }
         $accessController = self::getAccessController($dirname);
+        if (!$accessController || !($accessController instanceof XoopsModule)) {
+            // Handle the error or set a default value
+            return null; // or throw an exception
+        }
         $categoryDir = $accessController->dirname();
-
+    
         $cri = new CriteriaCompo();
     
         //category

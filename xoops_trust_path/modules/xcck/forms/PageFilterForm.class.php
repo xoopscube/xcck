@@ -225,12 +225,18 @@ class Xcck_PageFilterForm extends Xcck_AbstractFilterForm
     protected function _setTagRequest(/*** string[] ***/ $tags, /*** string ***/ $dirname)
     {
         $this->mNavi->addExtra('tag', $tags);
-		$ids = array();
-		$tagArr = explode('+', $tags);
-		$tDirname = XCube_Root::getSingleton()->mContext->mModuleConfig['tag_dirname'];
-		XCube_DelegateUtils::call('Legacy_Tag.'.$tDirname.'.GetDataIdListByTags', new XCube_Ref($ids), $tDirname, $tagArr, $dirname, 'page');
-		$this->_mCriteria->add(new Criteria('page_id', $ids, 'IN'));
-	}
+        $ids = array();
+        $tagArr = explode('+', $tags);
+        $tDirname = XCube_Root::getSingleton()->mContext->mModuleConfig['tag_dirname'];
+        XCube_DelegateUtils::call('Legacy_Tag.'.$tDirname.'.GetDataIdListByTags', new XCube_Ref($ids), $tDirname, $tagArr, $dirname, 'page');
+    
+        // Ensure _mCriteria is initialized before using it
+        if ($this->_mCriteria === null) {
+            $this->_mCriteria = new CriteriaCompo();
+        }
+    
+        $this->_mCriteria->add(new Criteria('page_id', $ids, 'IN'));
+    }
 
     /**
      * _setTextRequest

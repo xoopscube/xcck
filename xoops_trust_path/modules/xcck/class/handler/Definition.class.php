@@ -18,8 +18,11 @@ require_once XCCK_TRUST_PATH . '/class/FieldType.class.php';
 **/
 class Xcck_DefinitionObject extends Legacy_AbstractObject
 {
-	const PRIMARY = 'definition_id';
-	const DATANAME = 'definition';
+    const PRIMARY = 'definition_id';
+    const DATANAME = 'definition';
+
+    // Add the mFieldType property
+    public $mFieldType;
 
     /**
      * __construct
@@ -134,6 +137,8 @@ class Xcck_DefinitionHandler extends Xcck_ObjectGenericHandler
     public /*** string ***/ $mPrimary = 'definition_id';
 
     public /*** string ***/ $mClass = 'Xcck_DefinitionObject';
+
+    public $mFieldType; // Define the property
 
     /**
      * @public

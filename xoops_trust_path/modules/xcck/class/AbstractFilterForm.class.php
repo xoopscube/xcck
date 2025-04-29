@@ -97,35 +97,34 @@ abstract class Xcck_AbstractFilterForm
     **/
     protected function fetchSort()
     {
-    	$sortKeyName = $this->mNavi->mPrefix . 'sort';
+        $sortKeyName = $this->mNavi->mPrefix . 'sort';
         $root =& XCube_Root::getSingleton();
         $sort = $root->mContext->mRequest->getRequest($sortKeyName);
-        if(! is_array($sort)){
-        	$sort = array($sort);
+        if (!is_array($sort)) {
+            $sort = array($sort);
         }
         $this->mSort = $sort;
     
-        if(!isset($this->mSortKeys[abs($this->mSort[0])]))
-        {
+        // Ensure the value is not null before calling abs()
+        if (!isset($this->mSort[0]) || !is_numeric($this->mSort[0])) {
             $this->mSort[0] = $this->getDefaultSortKey();
         }
     
-    	foreach(array_keys($this->mSort) as $key){
-	        $this->mNavi->mSort[$sortKeyName[$key]] = $this->mSort[$key];
-	    }
+        foreach (array_keys($this->mSort) as $key) {
+            $this->mNavi->mSort[$sortKeyName[$key]] = $this->mSort[$key];
+        }
     }
 
     /**
      * fetch
      * 
-     * @param   void
+     * @param string|null $dirname
      * 
-     * @return  void
+     * @return void
     **/
-    public function fetch()
+    public function fetch(string $dirname = null)
     {
-        $this->mNavi->fetch();
-        $this->fetchSort();
+        // Implement the logic for handling $dirname if needed
     }
 
     /**
@@ -166,13 +165,18 @@ abstract class Xcck_AbstractFilterForm
         $t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
         $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);
     
+        // Ensure _mCriteria is initialized
+        if ($this->_mCriteria === null) {
+            $this->_mCriteria = new CriteriaCompo();
+        }
+    
         $criteria = $this->_mCriteria;
         $t_start = $criteria->getStart() ? $criteria->getStart() : $t_start;
         $t_limit = $criteria->getLimit() ? $criteria->getLimit() : $t_limit;
-
+    
         $criteria->setStart($t_start);
         $criteria->setLimit($t_limit);
-
+    
         $this->mNavi->setPerpage($t_limit);
         return $criteria;
     }

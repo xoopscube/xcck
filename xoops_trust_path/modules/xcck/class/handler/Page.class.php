@@ -32,7 +32,11 @@ class Xcck_PageObject extends Legacy_AbstractObject
     public $mParent = null;
     public $mLatlng = null;
     public $mLatestRevision = null;
-
+    public $mPrev = null;
+    public $mNext = null;
+    // public $mDirname = null;
+    // public $mTag = array();
+ 
     /**
      * __construct
      *

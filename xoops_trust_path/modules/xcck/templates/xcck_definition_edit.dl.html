@@ -196,9 +196,9 @@
             <dt><{$smarty.const._MD_XCCK_LANG_VALIDATION}></dt>
             <dd>
                 <select name="validation" id="legacy_xoopsform_validation">
-                    <option value="<{$validation}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
+                    <option value="<{$validation}>"<{if !isset($actionForm) || !$actionForm->get('validation')}> selected="selected"<{/if}>></option>
                     <{foreach item=validation from=$validationArr}>
-                    <option value="<{$validation}>"<{if $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
+                    <option value="<{$validation}>"<{if isset($actionForm) && $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
                     <{/foreach}>
                 </select>
             </dd>

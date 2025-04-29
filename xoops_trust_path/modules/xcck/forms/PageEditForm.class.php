@@ -20,6 +20,12 @@ class Xcck_PageEditForm extends XCube_ActionForm
 {
     public $mDirname = null;
     protected $_mDef = array();
+    protected $mFieldType;
+    protected $mUseMap;
+    protected $mUseTag;
+    protected $mTag; // Declare the mTag property
+    protected $mLatlng;
+
 
     /**
      * getTokenName

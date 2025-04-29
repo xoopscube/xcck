@@ -19,7 +19,7 @@ define('_MD_XCCK_DESC_CONFIG_PROGRESS_WIZARD', 'xCCK can use workflow management
 
 define('_AD_XCCK_LANG_ACCESS_CONTROLLER', 'dirname of the category management module');
 define('_AD_XCCK_LANG_SHOW_ORDER', 'Select how to show list');
-define('_AD_XCCK_LANG_AUTH_TYPE', 'Authentication Group Setting');
+define('_AD_XCCK_LANG_AUTH_TYPE', 'Authentication Group Settings');
 define('_AD_XCCK_LANG_USE_CATEGORY', 'Type of category management');
 define('_AD_XCCK_LANG_IMAGES', 'Attached image name');
 define('_AD_XCCK_LANG_MAINTABLE', 'Directory name of parent xCCK');
@@ -28,18 +28,21 @@ define('_AD_XCCK_LANG_THRESHOLD', 'Number of votes to publish');
 
 
 define('_AD_XCCK_LANG_SETTING_OUTPUT', 'Export the settings');
-define('_AD_XCCK_DESC_SETTING_OUTPUT', 'Export the fields and Preference settings of this module on another site. Copy &amp; paste the php code in the textarea, and make the file "{Xcck\'s dirname}Install.class.php" under (html)/modules/legacy/preload/. Then, you install the module !<br />For example, xcck\'s dirname is "Content", make the file "ContentInstall.class.php" by copy the textarea.');
+define('_AD_XCCK_DESC_SETTING_OUTPUT', '
+Export the fields and preference settings of this module to another site. Copy and paste the PHP code into the textarea, 
+and create the file "{Xcck dirname}Install.class.php" under (html)/modules/legacy/preload/. Then, install the module!<br />
+When the dirname for Xcck is "Content", for example, create the file "ContentInstall.class.php" by copying the textarea contents.');
 define('_AD_XCCK_LANG_TEMPLATE_OUTPUT', 'Template');
 define('_AD_XCCK_LANG_TEMPLATE_OUTPUT_VIEW', 'View Template');
-define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_VIEW', 'If you want to layout PageView fields on xcck_page_view.html template freely, you can copy and paste the following code. Instead, delete the code {foreach item=definition from=$definitions} ... {foreach}');
+define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_VIEW', 'The layout of PageView and its fields within xcck_page_view.html template is customizable. You can copy and paste the following code. Alternatively, delete the code block {foreach item=definition from=$definitions} ... {foreach}');
 define('_AD_XCCK_LANG_TEMPLATE_OUTPUT_EDIT', 'Edit Template');
-define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_EDIT', 'If you want to layout PageEdit fields on xcck_page_edit.html template freely, you can copy and paste the following code. Instead, delete the code {foreach item=field from=$fields} ... {foreach}');
+define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_EDIT', 'The layout of layout PageEdit fields within xcck_page_edit.html is customizable. You can copy and paste the following code. Alternatively, delete the code block {foreach item=field from=$fields} ... {foreach}');
 define('_AD_XCCK_LANG_TEMPLATE_OUTPUT_LIST', 'List Template');
-define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_LIST', 'If you want to layout PageList fields on xcck_page_list.html template freely, you can copy and paste the following code. Instead, delete the code {foreach item=def from=$definitions} ... {foreach}');
+define('_AD_XCCK_DESC_TEMPLATE_OUTPUT_LIST', 'The layout of layout PageList fields within xcck_page_list.html is customizable. You can copy and paste the following code. Alternatively, delete the code block {foreach item=def from=$definitions} ... {foreach}');
 define('_AD_XCCK_LANG_ASC_ORDER_NUMBER', 'The Num. for ASC');
 define('_AD_XCCK_LANG_DESC_ORDER_NUMBER', 'The Num. for DESC');
 define('_AD_XCCK_LANG_ORDER_SHOW', 'The numbers for Default Order');
-define('_AD_XCCK_DESC_ORDER_SHOW', 'You set the following number at Preference menu.');
+define('_AD_XCCK_DESC_ORDER_SHOW', 'You can set the following order number in the Preferences of the module.');
 
 /* Block */
 define('_AD_XCCK_LANG_DISPLAY_NUMBER', 'Number of Display');

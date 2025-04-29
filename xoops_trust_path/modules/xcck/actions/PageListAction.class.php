@@ -17,6 +17,9 @@ require_once XCCK_TRUST_PATH . '/class/AbstractListAction.class.php';
 **/
 class Xcck_PageListAction extends Xcck_AbstractListAction
 {
+    protected $mObjectHandler;
+    protected $mTree; // Declare the mTree property
+
     /**
      * _getCatId
      * 

@@ -7,9 +7,6 @@
 
 <{include file="admin_menu.html"}>
 
-
-<div class="ui-card-full">
-
     <h2><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT}></h2>
 
     <h3><{$smarty.const._AD_XCCK_LANG_TEMPLATE_OUTPUT_VIEW}></h3>
@@ -20,6 +17,7 @@
         </p>
     </div>
 
+<div class="ui-card-full">
 <div class="textarea-wrap">
 <textarea id="output-view" readonly>
 <{foreach item=definition from=$definitions}>
@@ -31,7 +29,7 @@
 </textarea>
     <div id="copyToClipboard1" class="clipboard icon" title="Copy To Clipboard"></div>
 </div><{* textarea wrapper *}>
-
+</div>
 
 <hr>
 
@@ -44,6 +42,7 @@
         </p>
     </div>
 
+<div class="ui-card-full">
 <div class="textarea-wrap">
 <textarea id="output-edit" readonly>
 <{foreach item=definition from=$definitions}>
@@ -101,7 +100,7 @@
 </textarea>
     <div id="copyToClipboard2" class="clipboard icon" title="Copy To Clipboard"></div>
 </div><{* textarea wrapper *}>
-
+</div>
 
 <hr>
 
@@ -113,7 +112,8 @@
             <{$smarty.const._AD_XCCK_DESC_TEMPLATE_OUTPUT_LIST}>
         </p>
     </div>
-
+    
+    <div class="ui-card-full">
     <div class="textarea-wrap">
     <textarea id="output-list" readonly>
       <{foreach item=def from=$definitions}>

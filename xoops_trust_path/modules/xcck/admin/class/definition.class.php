@@ -43,19 +43,19 @@ class Xcck_Definition
         $code = "<?php if (!defined('XOOPS_ROOT_PATH')) exit(); %s ?>";
     
         $arrayString = null;
-        foreach(array_keys($objs) as $key){
+        foreach($objs as $key => $obj){ // Corrected line
             $arrayString .= sprintf($this->_getArrayString(), 
                 $key,
-                $obj[$key]->get('field_name'),
-                $obj[$key]->get('label'),
-                $obj[$key]->get('field_type'),
-                $obj[$key]->get('validation'),
-                $obj[$key]->get('required'),
-                $obj[$key]->get('weight'),
-                $obj[$key]->get('show_flag'),
-                $obj[$key]->get('search_flag'),
-                $obj[$key]->get('desctiption'),
-                $obj[$key]->get('options')
+                $obj->get('field_name'), // Corrected line
+                $obj->get('label'), // Corrected line
+                $obj->get('field_type'), // Corrected line
+                $obj->get('validation'), // Corrected line
+                $obj->get('required'), // Corrected line
+                $obj->get('weight'), // Corrected line
+                $obj->get('show_flag'), // Corrected line
+                $obj->get('search_flag'), // Corrected line
+                $obj->get('desctiption'), // Corrected line
+                $obj->get('options') // Corrected line
             );
         }
         return sprintf($code, $arrayString);
@@ -68,7 +68,7 @@ class Xcck_Definition
 
     protected function _getHandler($table='definition')
     {
-        Legacy_Utils::getModuleHandler($table, $this->_mDirname);
+        return Legacy_Utils::getModuleHandler($table, $this->_mDirname);
     }
 
     public function getDefinition()

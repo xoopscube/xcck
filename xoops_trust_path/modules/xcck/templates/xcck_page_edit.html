@@ -193,7 +193,7 @@
 
     <footer class="action-control">
         <button type="submit" class="outline" name="_form_control_cancel" value="cancel"><{$smarty.const._CANCEL}></button>
-        <button type="submit" class="primary" <{if $usePreview===true}>name="_form_control_confirm"<{/if}>><{$smarty.const._SUBMIT}></button>
+        <button type="submit" class="primary" <{if isset($usePreview) && $usePreview === true}>name="_form_control_confirm"<{/if}>><{$smarty.const._SUBMIT}></button>
     </footer>
 
 </article>

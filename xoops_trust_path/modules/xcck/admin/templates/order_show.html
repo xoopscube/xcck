@@ -16,14 +16,16 @@
         <p class="description"><{$smarty.const._AD_XCCK_DESC_ORDER_SHOW}></p>
     </div>
 
-<table>
+<table class="outer">
+    <thead>
 <tr>
 <th><{$smarty.const._MD_XCCK_LANG_FIELD_NAME}></th>
 <th><{$smarty.const._MD_XCCK_LANG_LABEL}></th>
 <th><{$smarty.const._AD_XCCK_LANG_ASC_ORDER_NUMBER}></th>
 <th><{$smarty.const._AD_XCCK_LANG_DESC_ORDER_NUMBER}></th>
 </tr>
-
+</thead>
+<tbody class="list_center">
 <tr><td>page_id</td><td><{$smarty.const._MD_XCCK_LANG_PAGE_ID}></td><td>1</td><td>-1</td></tr>
 <tr><td>title</td><td><{$smarty.const._MD_XCCK_LANG_TITLE}></td><td>2</td><td>-2</td></tr>
 <tr><td>category_id</td><td><{$smarty.const._MD_XCCK_LANG_CATEGORY_ID}></td><td>3</td><td>-3</td></tr>
@@ -44,5 +46,5 @@
 <td>-<{$definition->get('definition_id')+2}></td>
 </tr>
 <{/foreach}>
-</table>
+</tbody></table>
 </div>

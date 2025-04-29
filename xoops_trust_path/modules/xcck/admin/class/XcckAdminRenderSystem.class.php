@@ -11,8 +11,8 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 define('XCCK_ADMIN_RENDER_TEMPLATE_DIRNAME','templates');
-define('XCCK_ADMIN_RENDER_FALLBACK_PATH',XOOPS_MODULE_PATH . '/legacy/admin/theme');    // TODO will be use other path
-define('XCCK_ADMIN_RENDER_FALLBACK_URL',XOOPS_MODULE_URL . '/legacy/admin/theme');    // TODO will be use other url
+define('XCCK_ADMIN_RENDER_FALLBACK_PATH',XOOPS_MODULE_PATH . '/legacy/admin/theme');    // TODO will use other path
+define('XCCK_ADMIN_RENDER_FALLBACK_URL',XOOPS_MODULE_URL . '/legacy/admin/theme');    // TODO will use other url
 
 /**
  * Xcck_AdminRenderSystem
@@ -30,7 +30,7 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
     {
         $this->mController =& $controller;
     
-        $this->mSmarty = new Legacy_AdminSmarty();    // TODO will be use other class?
+        $this->mSmarty = new Legacy_AdminSmarty();    // TODO will use other class?
         $this->mSmarty->register_modifier('theme',array($this,'modifierTheme'));
         $this->mSmarty->register_function('stylesheet',array($this,'functionStylesheet'));
     
@@ -116,14 +116,19 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
         $info = Xcck_AdminRenderSystem::getOverrideFileInfo($target->getTemplateName());
         $this->mSmarty->compile_id = $info['dirname'];
         $this->mSmarty->assign($target->getAttributes());
-        $this->mSmarty->template_dir = substr($info['path'],0,-strlen($info['file']));
+    
+        // Ensure $info['path'] and $info['file'] are strings before calling substr()
+        if (is_string($info['path']) && is_string($info['file'])) {
+            $this->mSmarty->template_dir = substr($info['path'], 0, -strlen($info['file']));
+        } else {
+            $this->mSmarty->template_dir = XCCK_ADMIN_RENDER_FALLBACK_PATH;
+        }
     
         $res = $this->mSmarty->fetch('file:' . $info['file']);
         $target->setResult($res);
         $this->_mStdoutBuffer .= $target->getAttribute('stdout_buffer');
     
-        foreach($target->getAttributes() as $key => $val)
-        {
+        foreach ($target->getAttributes() as $key => $val) {
             $this->mSmarty->clear_assign($key);
         }
     }
@@ -137,7 +142,7 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
      *
      * @return null[] {string 'theme',string 'file',string 'dirname'}
      */
-    public static function getOverrideFileInfo(string $file, string $prefix = null, bool $isSpDirName = false)
+    public static function getOverrideFileInfo(string $file, ?string $prefix = null, bool $isSpDirName = false)
     {
         $ret = array(
             'url'     => null,
@@ -146,10 +151,8 @@ class Xcck_AdminRenderSystem extends Legacy_AdminRenderSystem
             'dirname' => null,
             'file'    => null
         );
-        // TODO @gigamaster Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior
-        // if(strpos($file,'..') !== false || strpos($prefix,'..' != false))
-        if('..' && strpos($file,'..') !== false || ('..' && strpos($prefix,'..') != false))
-        {
+        // Ensure $file and $prefix are strings before calling strpos()
+        if (is_string($file) && strpos($file, '..') !== false || (is_string($prefix) && strpos($prefix, '..') !== false)) {
             return $ret;
         }
         $root =& XCube_Root::getSingleton();
